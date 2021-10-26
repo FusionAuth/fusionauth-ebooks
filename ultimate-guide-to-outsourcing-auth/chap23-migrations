@@ -1,0 +1,389 @@
+# Migration of Auth Data
+
+C> *By Dan Moore*
+
+Migrating data used for auth is a pain. People have to login to your application, and maintaining access is critical. User data is often siloed and changes at the whim of your users. Why would you endure the data migration pain? There are many reasons why you might decide to migrate your user data.
+
+## Why Migrate User Data
+
+There are many reasons to migrate user data. You might:
+
+* Have outgrown a homegrown auth system.
+* Need a single view into customers', users' or employees' profile data across all applications.
+* Have an outdated user management system with an impending license renewal and are looking for a better cost structure. 
+* Be looking to integrate both COTS applications and home grown internal apps and want a centralized auth system which supports standards. 
+
+This last one has many benefits, and is referred to as the bottleneck architecture:
+
+![A bottleneck architecture enabled by a modern auth system.](slow-migration-hub.svg)
+
+## Types Of Migration
+
+There are three approaches to user data migration. Every migration involves a cutover for a user, where they authenticate with the new system and not with the old one. While each approach differs in implementation details, a good way to consider which is right for you is to look at how many cutovers you want to handle.
+
+You can: 
+
+* Migrate everyone at once, also known as a "big bang" migration. With this approach, you have one cutover.
+* Segment your users and migrate each segment. With this method, you have multiple cutovers, each with a natural chunk of users.
+* Migrate when a user authenticates, also known as a "slow migration". With this choice, there are two cutover points. The first is the application cutover, which happens when you direct users to the new system for authentication. Then, at each user's login, the data is migrated and the user's system of record changes. Therefore there are many data cutover events.
+
+Each of these approaches migrates user and other account data into the new system from one or more other systems of record. Pick the one which works best for your situation after ensuring your new auth system supports it. Let's examine each approach in more detail.
+
+Note that this guide focuses on migrating users. Don't forget to plan to migrate anything else required by your application. These could include:
+
+* Groups
+* Roles
+* Application configuration
+* Permissions
+* Miscellaneous configuration
+
+Plan to spend time mapping between the current system's definitions and the new system's for these other entities, as well as for user profile data.
+
+### The Big Bang Migration
+
+With a big bang migration, you are moving all your users at one time. The exact duration varies, but there is a single cutover period. The basic steps are:
+
+* Map user attributes from the old system to the new system. 
+* Build a set of migration scripts or programs. 
+* Test it well. Ensure that migration accuracy and duration meet your needs.
+* Plan to modify your applications to point to the new system.
+* When you are ready to migrate, bring your systems down or to a mode where authentication is degraded (read-only or disallowed).
+* Run the migration scripts or programs.
+* Perform the cutover and flip the system of record for all your users from the old system to the new.
+
+This approach has strengths:
+
+* If you manage the timing of auth unavailability, the migration can have minimal impact on users. 
+* It has a fixed timeframe. When you have completed the migration, you're done and can shortly shut down the original system.
+* If you have to decommission the old system by a certain deadline, perhaps due to an upcoming license renewal or other external factors, you can plan to migrate before the deadline.
+* You only have to run two production user auth systems for a short period of time; typically you'll run the original system after the cutover in case you need to roll back.
+* Employees or contractors accessing user data, such as customer service reps, only need to switch their working routines after the migration is performed.
+
+The big bang approach has some challenges, though. 
+
+* It is common to miss issues during testing because this is a unique procedure. Production systems are often different in subtle ways from testing environments. 
+* Any problems with the migration impact many users, since all are migrated.
+* The big bang requires you to write code which you'll test intensely, use once and then throw away.
+* The new auth system must be compatible with the old system's password hashing algorithm for the migration to be transparent to the end user. (An alternative is to force all users to reset their password.)
+
+In short, this is a high risk, low outage duration, high reward solution. 
+
+### Segment By Segment Migration
+
+Segment by segment migration is the second alternative. It can be thought of as a series of "little bang" migrations. With this approach, you split your user accounts into segments and migrate each segment. Natural division points could be the type of user, source of user data, or applications used.
+
+Such a migration lets you test your processes in production by migrating less critical, or more understanding, sets of users first. The engineering team will be more understanding of any migration issues than paying customers, for instance. You will probably be able to reuse code in the different segments migration scripts. This approach works well when you have more than one old system from which you are migrating users. In general, this approach decreases risk when compared to a big bang migration.
+
+However, this approach is not without its issues:
+
+* You have multiple projects, downtime periods and cutovers to manage, not just one.
+* There may be no natural divisions in your user base.
+* If most of the users are in one segment, this approach may not be worth the extra effort. For example, if you have one popular application and a couple nascent apps, the extra work to migrate in phases may not be useful. You won't get a real test of the migration process until you do the popular application, which is where all the risk is as well.
+* This will take longer to complete, requiring you to run both old and new systems for longer.
+* You'll need to consider how to handle the cutover from the old system to the new system. Depending on how you segment your users, this could be complicated and require additional development. For example, if you divide your users by type and migrate the admin user segment first, you will need some kind of proxy in front of your auth systems to send admin users to the new system and normal users to the old one.
+
+Segment by segment migration decreases cutover risk, but in exchange requires a longer cutover timeline. 
+
+### Slow Migration
+
+This approach is a logical extension of segment by segment migration. Here, each segment is a single user. With a slow migration: 
+
+* Map user attributes from the old system to the new system. 
+* Set up a connection between the original auth system and the new one
+* Modify your application or applications to point to the new system. This is the application cutover point, which may require some downtime.
+* The new system receives all auth requests, but delegates the first such request for each user to the original user management system. 
+* The old system returns the information and the new one creates a new user. This is the data "cutover" point for this user.
+* For this user's subsequent authentication requests, the new auth system is now the system of record. The user has been migrated.
+
+To implement a slow migration, the new auth system typically needs to pass the user's auth credentials to the old system and expects the user information which is being migrated. You also need to modify applications to point to the new system before any migration starts. A slow migration has the following benefits:
+
+* Since you are only doing a user migration at the time a user authenticates, the blast radius of a mistake is smaller; it's limited to whoever is logging in.
+* You can upgrade your password hash algorithms transparently without requiring anyone to reset their password.
+* You don't have to migrate inactive users; this lets you scrub your user base.
+* You can use this opportunity to contact any dormant application users and encourage them to log in. 
+* There's less downtime during the application cutover because you aren't moving any data, only switching where users authenticate.
+* You don't have to understand all the moving pieces of the old auth system. You don't have to understand all the business logic which goes into authentication in the old system. 
+
+However, a slow migration isn't the right solution for every application. Issues to be aware of:
+
+* You are passing a user's plaintext password from the new auth system to the old one. Take special care to secure this data in transit. If possible, keep it from travelling over the internet.
+* The old user management solution must be extensible or support a standard like LDAP. You may need to extend it to add an auth API and you need to understand the user account attributes. 
+* You have to run both systems for the duration of the migration. Depending on the state of the old user auth management software, this may be painful.
+* Customer service and other internal users may need to access two systems to find a user during the migration period.
+* Rollback from a phased migration is more complex if there are issues, because there are two systems of record, one for migrated users and one for users in the old system.
+
+A slow migration is, in short, a lower risk, long duration choice. 
+
+## Planning and Mapping
+
+The first step to any successful data migration is planning. You need to know where all your data sources are, how to connect to them, and what the data looks like. 
+
+Consider edge cases. What fields are required and optional in the old system? What about the new system? 
+
+Is there a clean mapping between the data fields? The answer is almost certainly no, so think about how you are going to handle irregularities.
+
+Let's examine a trivial example. Suppose an old auth system has a user data model with these attribute names and data types:
+
+* `fname - string`
+* `lname - string`
+* `birthdate - string`
+* `phone_num - string`
+
+Assume the new system has a user object with these attributes and data types:
+
+* `first_name - string`
+* `last_name - string`
+* `date_of_birth - date`
+* `area_code - string`
+* `phone_number - string`
+
+When you are moving between them, you'll face three challenges. 
+
+The first is converting from `fname` to `first_name` and `lname` to `last_name`. This is pretty easy. 
+
+The second is parsing the `birthdate` field into a date format to place in the `date_of_birth` field. Depending on how clean the original data is, this could be trivial or it could be painful. 
+
+The last issue would be splitting the `phone_num` field into an `area_code` and a `phone_number`. 
+
+As this example shows, getting ready for a migration consists of many tiny choices and design decisions. Make sure you understand the data model for your users before you start the migration. 
+
+If you have the option of storing arbitrary key value data in the new system, serialize the user object from the old system and store it there. The old user model may be helpful in the future because if there was mistranslated data, you'll have the original copy.
+
+As mentioned above, think about relationships between users and other objects. Groups, roles, historical data, and anything else the old system has tied to users. Make sure you know where this data is coming from, if it can be discarded, and if not, where it will end up. Perhaps it will be migrated to the new system, perhaps to a different datastore.
+
+One special complexity which will require more planning is if you have user data in multiple datastores and are planning to merge the data. Ensure you map both of the old data models into the new user data model before you write any migration code. Another is if you need to ensure a no-downtime migration, and thus put applications in a degraded read-only mode where users can log in but not update their profile data.
+
+### Fields Worth Extra Attention
+
+There are two field types worth commenting on in more detail. The first is user ids. These are often referenced by other systems and are used for auditing, analytics or other historical purposes. If you can preserve user ids, do so. 
+
+If you cannot, plan accordingly. You may want to keep that field in the new system in an `old_user_id` field, accept the loss of this data, or build a system to map from old user ids to new user ids, to be used by any external party which depended on the old user id.
+
+The other notable attribute is the password, and any related fields such as a salt. Passwords don't have to be migrated in a slow migration. The user will provide the password during authentication, and it can be stored in the new auth system during that process.
+
+## Big Bang Implementation
+
+Below, find out how to migrate all your user data into an auth system with one cutover. But first, let's look at how the migration affects your users.
+
+### User Authentication Over the Migration Project
+
+Before a big bang migration project begins, the old datastore is the system of truth:
+
+![The user auth process before the big bang migration.](auth-before-big-bang.svg)
+
+Users are happily authenticating against the old auth system, wherever it may be. 
+
+Then, you perform the migration. No authentication is allowed during the migration, so plan for downtime. 
+
+If downtime isn't an option for your system, you may use a read-only version of the old datastore to allow for degraded login functionality. This could be set as a feature flag or configuration option. Such a change may require releasing your application or applications, so if this is a requirement, spend some time planning for any application changes.
+
+![The migration process during the big bang migration.](auth-during-big-bang.svg)
+
+After the migration, all users authenticate against the new system, and the old system can be decommissioned after you ensure there's no need to roll back to the old system due to functionality issues or data that was incorrectly migrated. 
+
+Keep on eye on customer support tickets or calls to understand if there were any such issues missed during the big bang migration.
+
+Below is a diagram of the user login experience after the big bang migration is completed successfully. 
+
+The new user datastore is now the system of truth, and the old auth system is no longer in the picture:
+
+![The user auth process after the big bang migration.](auth-after-big-bang.svg)
+
+These diagrams illuminate to the strength and the weaknesses of the big bang migration, as mentioned above. Conceptually it is simple, but in reality there are a lot of moving pieces to change your system from the first diagram above to the last. Let's take a look at some of them.
+
+### Test Import Performance
+
+Because you have downtime with this approach, you're going to want to import users quickly. Review auth system documentation for performance enhancements. This may involve degraded functionality in some instances, but as long as that functionality can be re-enabled after import, that's ok. You're looking for speed here, both because you want the production import to happen quickly and also because your team will be importing the dataset multiple times during the test phase.
+
+Steps you can take vary depending on the system, but common options include:
+
+* Size your system with plenty of headroom.
+* Take advantage of any bulk import APIs, rather than single user creation API endpoints. The latter are great for ongoing management, but for import performance, bulk options are the way to go.
+* Disable any webhooks or other integration points.
+* Set the HTTP timeout to a large value on API requests. 
+* Deduplicate any user data you can. No sense in importing users multiple times if it is avoidable.
+* Stage your data if possible. This may mean exporting user data to flat files, and then importing that. This will make debugging easier, since you can load one file at a time, and you can repeat a data load if there are issues. It will also be more performant than loading data from a database or databases.
+
+### Building the Migration Scripts
+
+To actually move the data, you'll build out a series of scripts and programs. The exact steps here are highly implementation dependent, but make sure you treat these scripts like any other software project.
+
+* Document them. You don't need excessive documentation, but ensure that team members can pick up the scripts if needed. 
+* Keep them under version control.
+* You don't need to set up a continuous integration system, but ensure you can build them.
+* Don't worry about making them fast until you determine they are the bottleneck. It's far more likely the auth system or password hashing (if applicable) will be the slowest part of the system.
+
+You can write the migration scripts in shell, or any language which is supported by the client libraries of your authentication provider. The basic flow for migrating user data is:
+
+* Iterate over all the users in the old system or systems. Make sure you capture all the user information you need, including both profile data and password hash data.
+* Build the intermediate files to assist with debugging and performance.
+* Import the files into the new system using the scripts.
+
+You want this process to be automated as much as possible because the last thing you want during downtime is to forget a critical step and delay the cutover. As an additional benefit, this process will be done over and over again during testing, so automating it will relieve toil.
+
+Make sure you create all your groups, tenants, applications and other configuration before you import your users. The best option is to create these in an automated fashion so you can tear down your environment and rebuild with minimal effort. Scripts or tools like Terraform are helpful here.
+
+#### Password Hashes
+
+Hopefully your current system hashes user passwords. If it encrypts them or stores them in plaintext, moving to a modern auth system will improve your security posture. If this is your situation, configure the new auth provider to hash passwords on import.
+
+If, on the other hand, the original system hashes passwords, find out which algorithm was used. If it is one supported by the new system, that's great. If the old system uses an algorithm other than one supported by the new auth system, check if the new one supports custom hash algorithms. 
+
+If the new auth system doesn't, you have two options:
+
+* Force all users to reset their password.
+* Use the slow migration option discussed elsewhere.
+
+If your system does allow for custom password hashing algorithms, check if you can rehash passwords using a stronger or more standard hashing algorithm on login.
+
+#### Refresh Tokens
+
+Determine if you need to import refresh tokens, if you are migrating from an OAuth based auth system. 
+
+Doing an import will allow your end users to continue to login without interruption, as when their access tokens expire, the refresh token stored on their device will continue to work. This is especially important if your users have logged in on devices such as TVs or appliances, where re-authentication can be painful.
+
+### Testing Data Migration Correctness
+
+Test this import process with as large of a dataset as possible. If you can, use your entire user dataset, but be aware of PII concerns. Treat the data carefully. 
+
+Testing with a realistic sized load lets you know how long your import will take. Real world data will reveal edge cases, such as duplicate emails or incorrectly formatted user attributes.
+
+Given you want to test with as many users as possible, plan to be resetting the auth system often. This is usually the quickest way to get back to a "clean slate" when an import script crashes or your assumptions about the data are incorrect.
+
+Test that your applications can integrate with the new auth system. You probably did some of this during a proof of concept while you were testing this migration provider, but now you can test with production or close to production data.
+
+### Performing the Migration
+
+When your scripts work in your testbed environment, prepare to do a production migration. Inform all the internal stakeholders. Plan for downtime unless you can run your application with the original user store in a read only mode. How much downtime? You should know based on your testing of the import.
+
+Run the migration on your production dataset, moving the data from the original system to the new one. When the migration is finished, release your application changes. All applications should point to the new system for authentication requests and related user flows, including, but not limited to: 
+
+* Log in 
+* Registration, if applicable
+* Forgot password
+* Password changes
+
+Should you need to rollback, revert the changes to your application, and have it point to the old system. If users have updated profile data in the new system, you'll need to port those changes back to your legacy system. 
+
+A script using an API and searching for users with recent updates will be a good starting point, though the exact data rollback will be application dependent.
+
+## Segment By Segment Implementation
+
+A segment by segment migration is similar to the above big ban migration, except that you are going to split your user data into segments and migrate each segment. Logical user database segmentation points include by application or by role. However, the planning, mapping and execution are similar, just done for smaller chunks of users and multiple times.
+
+However, the application cutover process with this approach is not as simple. You can't simply send all your users to the new auth system when you haven't migrated all of them. 
+
+Which users are sent to which system depends on how you created your segments. If you split on application usage, then update one application to send any authenticating users to the new system. If you split your users based on other attributes, build logic in your application to determine where to send a user when they log in.
+
+## Slow Migration Implementation
+
+At a high level, a slow migration happens in four phases. Each user proceeds through the phases independently of other users.  Here's how the data flows before any changes to the auth system are made: 
+
+![The user auth process before the slow migration."](auth-before-migration.svg)
+
+In the second phase, you'd stand up the new system, connect it to the old system, and route all authentication requests from applications to the new system. When the new auth system proxies the old auth system, the latter is consulted the first time a user authenticates:
+
+![The auth process during an initial authentication in a slow migration.](auth-during-migration-first-auth.svg)
+
+When this initial login is successful, any user data to be migrated is returned. That data is stored in the new system. The old system is the system of record for the first login of this user, but not after.
+
+This migration is also an excellent time to clean user data up as it is transferred to the new system, as long as you can do it quickly; the user is signing in, after all. For example, you can convert addresses to a standard format. 
+
+You can also upgrade the user's password. If the old system stored the password as an md5 hash, on migration you can use a more modern hashing algorithm, such as bcrypt. Since you have the user's password in plaintext, the normal difficulty of changing a password hash is avoided.
+
+For subsequent logins, as mentioned, the user's data has been migrated. For this user, there's no longer any need to delegate to the old auth system. However, it continues to run because there are other users who have not yet logged in, and therefore have not yet been migrated.
+
+Here's the auth process for a user who has been migrated to the new system:
+
+![The auth process during a subsequent authentication in a slow migration.](auth-during-migration-second-auth.svg)
+
+After a period of time, most user data has been migrated. There's no need to consult the old auth system and it can be safely shut down.
+
+![The auth process after the migration is completed.](auth-after-migration.svg)
+
+Slow migration is similar to the [strangler pattern](https://martinfowler.com/bliki/StranglerFigApplication.html), first documented by Martin Fowler. Let's walk through the steps to successfully undertake a phased migration.
+
+### What Does Done Mean
+
+A key part of planning for a slow migration is setting a completion goal. Because slow migrations move users one at a time, it is unlikely you'll migrate 100% of your users in this manner. Some people will use your software rarely, others may have abandoned their account. No matter how long the migration, some people may not log in during that time.
+
+Decide what "done" means to you. When thinking about this, consider:
+
+* How often do people log in, on average? Is there a significant long tail of users who visit the application less frequently than the average user? 
+* What are the ramifications of a user being locked out of their account? Are there business, compliance, legal, or security repercussions? Is loss of timely access to data an annoyance or a disaster for the user?
+* What will you do with unmigrated users? 
+* How hard or painful is it to keep both systems running?
+* What is the value in a customer who has not logged in to the system in six months? A year? Three years?
+
+It's hard to give any blanket guidance as all systems are different, but you should definitely set a goal of percentage of users migrated, migration time elapsed, or both. Otherwise you may be in for a frustrating situation, where you don't know when to cut over. You'll want to query new and old systems and determine how many accounts have been migrated to determine progress.
+
+### Proxy To the Old Auth System
+
+Once the planning and data mapping is done, you need to connect the two systems.
+
+The new auth system could connect to the old system's datastore, but it's better to create an API in the old system. Doing so allows you to leverage any business logic the old system performs to authenticate the user or assemble their data. This API may also call any other APIs or systems needed to construct the full user object for the new system. 
+
+This code should mark the user as migrated in the old auth system datastore, if possible. This will be helpful in tracking progress and determining the system of record for each user.
+
+If you can't modify the old system to add an API, because it is proprietary or hard to change, you can either reach directly into the database, or put a network proxy in front of the old system to perform required data transformations. In a worst case scenario, you could mimic whatever user agent the old system expects, such as a browser, and convert the corresponding result into data to feed into the new system.
+
+Make sure to lock down this API. At a minimum, use TLS and some form of authorization to ensure that no malicious party can call this endpoint. You don't want someone to be able to arbitrarily try out authentication credentials. Use basic authentication or a shared header value, and discard any requests which are not expected. You could also lock access to a given IP range, if the new system is only connecting from a certain set of IPs.
+
+You should build an automated test against this API, ensuring that if there are any changes to the old auth system, you learn about them before your users do.
+
+When you have tested that this proxy returns the correct user data for a given set of authentication credentials, cut your applications over to the new system. 
+
+No data needs to be migrated, but new users should register with the new auth system. It should receive all authentication requests first. It will, of course, defer such requests to the old auth system.
+
+### The Authentication Process
+
+When a user signs in, the new auth system passes on the credentials to the old auth system, and receives the user data in response. Here's the diagram from above:
+
+![The auth process during an initial authentication in a slow migration.](auth-during-migration-first-auth.svg)
+
+After initial authentication, the data should be migrated to the new auth datastore. Then, this user can be completely managed by it.
+
+During authentication, add a migration success marker to the user in the new auth system. This is the inverse of the migration marker in the old system, mentioned above. Having this data will let you know how many users have been migrated successfully. If troubleshooting the new auth system, it is useful to know if users with issues are newly registered or migrated.
+
+### Remove the Proxy
+
+After running reports on the numbers of migrations, you'll know when you've reached your goal of migrated users. Prepare to shut down the old auth system. Clean up any code or configuration in the new system which was used to communicate with the old system.
+
+At this point, you need to determine what to do with all the users who haven't migrated. You considered this in the planning section, but now you need to execute on the plan, or adjust it. You have the following options:
+
+* Notify the users to encourage them to migrate ("if you don't login, your account will be deleted on DATE"). 
+* Archive or delete them from the old system. This will force users to re-register, and may mean lost data.
+* Move them to the new auth system with a big bang migration.
+* Continue the slow migration and extend the time running both systems.
+
+Let's examine each of these options.
+
+#### Encourage Users To Log In
+
+You can reach out to the users who remain in the old auth system and remind them of the value of your application. Encourage them to login, which will migrate their data. 
+
+Who among us hasn't received a notice stating "inactive accounts will be deleted on DATE. If you want to keep your account, please sign in." If you send out a notice like this, provide ample lead time.
+
+#### Force Users To Re-Register
+
+If the accounts don't have valuable associated data and it's easy to sign up for a new account, you may want to archive or delete them from the old system. Once you've done that, anyone who only had an account on the old system will receive an authentication error. They can, of course, register in the new auth system.
+
+In this case, make sure to stop billing any unmigrated users. Charging people for an application to which they no longer have access is a great way to annoy them.
+
+#### Migrate All Remaining Accounts
+
+If the accounts are valuable, migrate them with a big bang. This will be less risky than if you were trying to migrate everyone, because you are migrating fewer, less active users. 
+
+If you don't have access to the password hash logic, you could force all these accounts to reset their password. While this is a disastrous path if you are migrating *every* user in a system, this subset of users is less active and smaller. They haven't accessed your system in a while, and may have forgotten your application even exists.
+
+#### Extend the Migration
+
+If the reason you are doing a slow migration is because the big bang is too painful, and the prospect continues to be worrisome even with a smaller set of users, then you can extend the slow migration period. Simply keep running both systems.
+
+You can mix and match these approaches. For example, you could migrate all paying customers with a big bang, while archiving free customers who may have been kicking the tires on your application a year ago.
+
+## Conclusion
+
+Data migrations are never easy, and auth system migrations are even tougher. The auth system is the front door to your application, and you don't want it locked any time. Consider the tradeoffs of these different types of migrations and pick the one best suited to your situation.
+
+*Dan Moore is FusionAuth's head of Developer Relations.*

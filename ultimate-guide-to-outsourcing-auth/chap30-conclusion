@@ -1,0 +1,9 @@
+# Final Thoughts
+
+Choosing an auth system is critical to the success of your application. 
+
+Done right, it provides needed, undifferentiated functionality that gates access to your application, secures your users' data, and doesn't lock you in to software costly in terms of money or team time.
+
+Done wrong, an auth system can become a chokepoint, which inhibits your application and business flexibility, or a sinkhole, where you are spending team time and money to maintain functionality that, while important, your users don't really care about.
+
+This guide has focused on evaluation, risk management and implementation concerns. I hope this guide has helped you. Please feel free to contact the FusionAuth team at https://fusionauth.io/ with feedback about this book, or questions about how an auth system can help you.

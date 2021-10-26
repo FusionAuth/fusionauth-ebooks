@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="906px" height="666px" viewBox="0 0 906 666" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <rect id="path-1" x="43" y="113" width="820" height="117"></rect>
+        <filter x="-0.9%" y="-4.3%" width="101.7%" height="112.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <ellipse id="path-3" cx="151.5" cy="372" rx="86.5" ry="64"></ellipse>
+        <filter x="-4.0%" y="-3.9%" width="108.1%" height="110.9%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <ellipse id="path-5" cx="417.5" cy="538" rx="86.5" ry="64"></ellipse>
+        <filter x="-4.0%" y="-3.9%" width="108.1%" height="110.9%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <ellipse id="path-7" cx="747.5" cy="410" rx="86.5" ry="64"></ellipse>
+        <filter x="-4.0%" y="-3.9%" width="108.1%" height="110.9%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Rectangle">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <rect stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#147894" fill-rule="evenodd" x="43.5" y="113.5" width="819" height="116"></rect>
+        </g>
+        <g id="Oval">
+            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            <ellipse stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#F9B928" fill-rule="evenodd" cx="151.5" cy="372" rx="86" ry="63.5"></ellipse>
+        </g>
+        <g id="Oval">
+            <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+            <ellipse stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#F9B928" fill-rule="evenodd" cx="417.5" cy="538" rx="86" ry="63.5"></ellipse>
+        </g>
+        <g id="Oval">
+            <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+            <ellipse stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#F9B928" fill-rule="evenodd" cx="747.5" cy="410" rx="86" ry="63.5"></ellipse>
+        </g>
+        <path id="Line" d="M127.928029,75.4572448 L130.542755,76.9280286 L129.807363,78.2353919 L120.807363,94.2353919 L119.5,96.5595933 L118.192637,94.2353919 L109.192637,78.2353919 L108.457245,76.9280286 L111.071971,75.4572448 L111.807363,76.7646081 L118,87.773 L118,81 L121,81 L121,87.773 L127.192637,76.7646081 L127.928029,75.4572448 Z M120.31,89 L118.69,89 L119.5,90.44 L120.31,89 Z M121,71 L121,80 L118,80 L118,71 L121,71 Z M121,61 L121,69 L118,69 L118,61 L121,61 Z M121,51 L121,59 L118,59 L118,51 L121,51 Z M121,41 L121,49 L118,49 L118,41 L121,41 Z M121,31 L121,39 L118,39 L118,31 L121,31 Z M121,21 L121,29 L118,29 L118,21 L121,21 Z M121,11 L121,19 L118,19 L118,11 L121,11 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path id="Line-2" d="M311.928029,75.4572448 L314.542755,76.9280286 L313.807363,78.2353919 L304.807363,94.2353919 L303.5,96.5595933 L302.192637,94.2353919 L293.192637,78.2353919 L292.457245,76.9280286 L295.071971,75.4572448 L295.807363,76.7646081 L302,87.773 L302,83 L305,83 L305,87.773 L311.192637,76.7646081 L311.928029,75.4572448 Z M303.747,90 L303.252,90 L303.5,90.44 L303.747,90 Z M305,75 L305,82 L302,82 L302,75 L305,75 Z M305,67 L305,74 L302,74 L302,67 L305,67 Z M305,59 L305,66 L302,66 L302,59 L305,59 Z M305,51 L305,58 L302,58 L302,51 L305,51 Z M305,43 L305,50 L302,50 L302,43 L305,43 Z M305,35 L305,42 L302,42 L302,35 L305,35 Z M305,27 L305,34 L302,34 L302,27 L305,27 Z M305,19 L305,26 L302,26 L302,19 L305,19 Z M305,11 L305,18 L302,18 L302,11 L305,11 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path id="Line-3" d="M497.928029,75.4572448 L500.542755,76.9280286 L499.807363,78.2353919 L490.807363,94.2353919 L489.5,96.5595933 L488.192637,94.2353919 L479.192637,78.2353919 L478.457245,76.9280286 L481.071971,75.4572448 L481.807363,76.7646081 L488,87.773 L488,81 L491,81 L491,87.773 L497.192637,76.7646081 L497.928029,75.4572448 Z M490.31,89 L488.69,89 L489.5,90.44 L490.31,89 Z M491,71 L491,79 L488,79 L488,71 L491,71 Z M491,61 L491,69 L488,69 L488,61 L491,61 Z M491,51 L491,59 L488,59 L488,51 L491,51 Z M491,41 L491,49 L488,49 L488,41 L491,41 Z M491,31 L491,39 L488,39 L488,31 L491,31 Z M491,21 L491,29 L488,29 L488,21 L491,21 Z M491,11 L491,19 L488,19 L488,11 L491,11 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path id="Line-4" d="M669.928029,75.4572448 L672.542755,76.9280286 L671.807363,78.2353919 L662.807363,94.2353919 L661.5,96.5595933 L660.192637,94.2353919 L651.192637,78.2353919 L650.457245,76.9280286 L653.071971,75.4572448 L653.807363,76.7646081 L660,87.773 L660,81 L663,81 L663,87.773 L669.192637,76.7646081 L669.928029,75.4572448 Z M662.31,89 L660.69,89 L661.5,90.44 L662.31,89 Z M663,71 L663,79 L660,79 L660,71 L663,71 Z M663,61 L663,69 L660,69 L660,61 L663,61 Z M663,51 L663,59 L660,59 L660,51 L663,51 Z M663,41 L663,49 L660,49 L660,41 L663,41 Z M663,31 L663,39 L660,39 L660,31 L663,31 Z M663,21 L663,29 L660,29 L660,21 L663,21 Z M663,11 L663,19 L660,19 L660,11 L663,11 Z" fill="#000000" fill-rule="nonzero"></path>
+        <text id="HTTP" font-family="Montserrat-Medium, Montserrat" font-size="28" font-weight="400" fill="#171515">
+            <tspan x="747" y="63">HTTP </tspan>
+        </text>
+        <path id="Line-5" d="M279.570671,242.379857 L281.620143,244.570671 L280.524736,245.595407 L229.437003,293.387157 L221.976,300.366 L234.246386,297.367968 L235.703505,297.011869 L236.415703,299.926105 L234.958584,300.282204 L217.125827,304.640275 L214.535395,305.27334 L215.339558,302.730815 L220.875487,285.227858 L221.327829,283.797688 L224.188169,284.702372 L223.735827,286.132542 L219.926,298.175 L227.387532,291.196343 L278.475264,243.404593 L279.570671,242.379857 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path id="Line-6" d="M217.032,428.430948 L218.300526,429.231474 L308.670904,486.261324 L317.303,491.708 L311.298269,480.596733 L310.58512,479.277105 L313.224376,477.850807 L313.937525,479.170435 L322.665312,495.320535 L323.933133,497.66654 L321.269874,497.531767 L302.935775,496.603978 L301.437691,496.528168 L301.589311,493.532002 L303.087394,493.607812 L315.702,494.245 L307.069852,488.798376 L216.699474,431.768526 L215.430948,430.968 L217.032,428.430948 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path id="Line-7" d="M725.789926,242.81593 L725.986998,244.302928 L735.033137,312.560159 L736.365,322.618 L741.058619,310.890335 L741.615874,309.497687 L744.401169,310.612196 L743.843915,312.004844 L737.024029,329.048586 L736.033355,331.524404 L734.431967,329.392112 L723.407879,314.713234 L722.507098,313.51382 L724.905926,311.712259 L725.806707,312.911673 L733.391,323.011 L732.059141,312.954303 L723.013002,244.697072 L722.81593,243.210074 L725.789926,242.81593 Z" fill="#000000" fill-rule="nonzero"></path>
+        <text id="Trusted" font-family="Montserrat-Medium, Montserrat" font-size="28" font-weight="400" fill="#171515">
+            <tspan x="269" y="296">Trusted</tspan>
+        </text>
+        <text id="Service-3" font-family="Montserrat-Medium, Montserrat" font-size="28" font-weight="400" fill="#171515">
+            <tspan x="684" y="420">Service 3</tspan>
+        </text>
+        <text id="API-Gateway" font-family="Montserrat-Medium, Montserrat" font-size="36" font-weight="400" fill="#FFFFFF">
+            <tspan x="373" y="185">API Gateway</tspan>
+        </text>
+        <text id="Service-1" font-family="Montserrat-Medium, Montserrat" font-size="28" font-weight="400" fill="#171515">
+            <tspan x="91" y="382">Service 1</tspan>
+        </text>
+        <text id="Trusted" font-family="Montserrat-Medium, Montserrat" font-size="28" font-weight="400" fill="#171515">
+            <tspan x="269" y="444">Trusted</tspan>
+        </text>
+        <text id="Trusted" font-family="Montserrat-Medium, Montserrat" font-size="28" font-weight="400" fill="#171515">
+            <tspan x="597" y="296">Trusted</tspan>
+        </text>
+        <text id="Service-2" font-family="Montserrat-Medium, Montserrat" font-size="28" font-weight="400" fill="#171515">
+            <tspan x="354" y="548">Service 2</tspan>
+        </text>
+    </g>
+</svg>

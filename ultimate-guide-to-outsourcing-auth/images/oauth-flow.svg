@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1305px" height="812px" viewBox="0 0 1305 812" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <rect id="path-1" x="21" y="95" width="262" height="687" rx="8"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="262" height="687" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="395" y="96" width="262" height="687" rx="8"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="262" height="687" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <rect id="path-5" x="709" y="95" width="192" height="687" rx="8"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="192" height="687" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <rect id="path-7" x="1044" y="95" width="192" height="687" rx="8"></rect>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="192" height="687" fill="white">
+            <use xlink:href="#path-7"></use>
+        </mask>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <use id="Rectangle" stroke="#1B1A1A" mask="url(#mask-2)" stroke-width="4" stroke-dasharray="5" xlink:href="#path-1"></use>
+        <use id="Rectangle" stroke="#1B1A1A" mask="url(#mask-4)" stroke-width="4" stroke-dasharray="5" xlink:href="#path-3"></use>
+        <use id="Rectangle" stroke="#1B1A1A" mask="url(#mask-6)" stroke-width="4" stroke-dasharray="5" xlink:href="#path-5"></use>
+        <use id="Rectangle" stroke="#1B1A1A" mask="url(#mask-8)" stroke-width="4" stroke-dasharray="5" xlink:href="#path-7"></use>
+        <text id="“User-Agent”" font-family="Montserrat-SemiBold, Montserrat" font-size="28" font-weight="500" fill="#147894">
+            <tspan x="58.158" y="34">“User Agent”</tspan>
+        </text>
+        <text id="“Client”" font-family="Montserrat-SemiBold, Montserrat" font-size="28" font-weight="500" fill="#147894">
+            <tspan x="459.728" y="34">“Client”</tspan>
+        </text>
+        <text id="“Authorization-Serve" font-family="Montserrat-SemiBold, Montserrat" font-size="28" font-weight="500" fill="#147894">
+            <tspan x="643.384" y="34">“Authorization Server”</tspan>
+        </text>
+        <text id="“Resource-Server”" font-family="Montserrat-SemiBold, Montserrat" font-size="28" font-weight="500" fill="#147894">
+            <tspan x="1009.618" y="34">“Resource Server”</tspan>
+        </text>
+        <text id="Web-Browser/Mobile-A" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#131212">
+            <tspan x="20.43" y="75">Web Browser/Mobile App</tspan>
+        </text>
+        <text id="Your-Back-end" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#131212">
+            <tspan x="439.23" y="75">Your Back-end</tspan>
+        </text>
+        <text id="Third-Party-Service" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#131212">
+            <tspan x="705.82" y="75">Third Party Service</tspan>
+        </text>
+        <text id="Third-Party-API" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#131212">
+            <tspan x="1062.46" y="75">Third Party API</tspan>
+        </text>
+        <rect id="Rectangle" stroke="#191818" stroke-width="2" x="42" y="116" width="220" height="136"></rect>
+        <rect id="Rectangle" stroke="#201F1F" fill="#D8D8D8" x="75.5" y="200.5" width="151" height="33"></rect>
+        <text id="Gain-Access?" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#131212">
+            <tspan x="83.63" y="223">Gain Access?</tspan>
+        </text>
+        <line x1="83.5" y1="137.5" x2="206.5" y2="137.5" id="Line" stroke="#979797" stroke-linecap="square"></line>
+        <line x1="83.5" y1="157.5" x2="206.5" y2="157.5" id="Line-2" stroke="#979797" stroke-linecap="square"></line>
+        <line x1="86.5" y1="177.5" x2="206.5" y2="177.5" id="Line-3" stroke="#979797" stroke-linecap="square"></line>
+        <path id="Line-4" d="M421.344808,180.922509 L422.217826,181.410197 L434.237685,188.12477 L435.789717,188.991771 L434.242827,189.867913 L422.26279,196.653282 L421.392665,197.146112 L420.407005,195.405861 L421.27713,194.913031 L429.935,190.008 L421.757317,190.033169 L263.50295,190.499996 L262.502954,190.502945 L262.497055,188.502954 L263.49705,188.500004 L421.751417,188.033177 L429.929,188.008 L421.242449,183.156233 L420.369431,182.668545 L421.344808,180.922509 Z" fill="#1B1A1A" fill-rule="nonzero"></path>
+        <path id="Line-5" d="M238.111639,334.360024 L239.096379,336.100796 L238.225993,336.593166 L229.566,341.492 L237.743994,341.472772 L432.997579,341.000003 L433.997576,340.997582 L434.002418,342.997576 L433.002421,342.999997 L237.748836,343.472766 L229.568,343.492 L238.25446,348.349981 L239.12722,348.83813 L238.150921,350.58365 L237.278161,350.095501 L225.261853,343.374576 L223.710279,342.506755 L225.257632,341.63143 L237.241253,334.852394 L238.111639,334.360024 Z" fill="#1B1A1A" fill-rule="nonzero"></path>
+        <path id="Line-6" d="M745.868686,439.388163 L746.740261,439.878424 L758.740261,446.628424 L760.289729,447.5 L758.740261,448.371576 L746.740261,455.121576 L745.868686,455.611837 L744.888163,453.868686 L745.759739,453.378424 L754.432,448.5 L271.5,448.5 L271.5,446.5 L754.432,446.5 L745.759739,441.621576 L744.888163,441.131314 L745.868686,439.388163 Z" fill="#1B1A1A" fill-rule="nonzero"></path>
+        <path id="Line-7" d="M170.638087,502.897883 L171.617153,504.641853 L170.745168,505.131386 L162.069,510.002 L170.249598,510.009398 L757.500835,510.5 L758.500835,510.500836 L758.499164,512.500835 L757.499165,512.5 L170.247927,512.009397 L162.065,512.002 L170.735346,516.88823 L171.606512,517.37922 L170.624533,519.121551 L169.753368,518.630562 L157.759011,511.870539 L156.210272,510.997669 L157.760467,510.127389 L169.766102,503.387416 L170.638087,502.897883 Z" fill="#1B1A1A" fill-rule="nonzero"></path>
+        <path id="Line-8" d="M421.368686,633.888163 L422.240261,634.378424 L434.240261,641.128424 L435.789729,642 L434.240261,642.871576 L422.240261,649.621576 L421.368686,650.111837 L420.388163,648.368686 L421.259739,647.878424 L429.932,643 L262,643 L262,641 L429.932,641 L421.259739,636.121576 L420.388163,635.631314 L421.368686,633.888163 Z" fill="#1B1A1A" fill-rule="nonzero"></path>
+        <path id="Line-9" d="M1069.85987,633.400825 L1070.73197,633.890137 L1082.73931,640.627075 L1084.28973,641.496964 L1082.74121,642.370225 L1070.74856,649.133279 L1069.87752,649.624488 L1068.8951,647.882405 L1069.76614,647.391196 L1078.433,642.503 L1070.2527,642.512239 L622.001088,642.999999 L621.001089,643.001088 L620.998912,641.001089 L621.998912,641.000001 L1070.25052,640.51224 L1078.432,640.503 L1069.75335,635.634354 L1068.88124,635.145041 L1069.85987,633.400825 Z" fill="#1B1A1A" fill-rule="nonzero"></path>
+        <path id="Line-10" d="M654.131314,719.388163 L655.111837,721.131314 L654.240261,721.621576 L645.567,726.5 L1082.5,726.5 L1082.5,728.5 L645.567,728.5 L654.240261,733.378424 L655.111837,733.868686 L654.131314,735.611837 L653.259739,735.121576 L641.259739,728.371576 L639.710271,727.5 L641.259739,726.628424 L653.259739,719.878424 L654.131314,719.388163 Z" fill="#1B1A1A" fill-rule="nonzero"></path>
+        <text id="Begin-oAuth-Flow" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#131212">
+            <tspan x="288.112" y="167">Begin oAuth</tspan>
+            <tspan x="317.992" y="186"> Flow</tspan>
+        </text>
+        <text id="Tell-client-to-re-di" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#131212">
+            <tspan x="486.736" y="323">Tell client  </tspan>
+            <tspan x="469.112" y="342">to re-direct to</tspan>
+            <tspan x="466.952" y="361">“authorization</tspan>
+            <tspan x="496.656" y="380">server”</tspan>
+        </text>
+        <text id="User-confirms-access" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#131212">
+            <tspan x="94.032" y="435">User confirms </tspan>
+            <tspan x="90.832" y="454">access request</tspan>
+        </text>
+        <text id="Access-token-returne" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#131212">
+            <tspan x="767.68" y="492">Access token</tspan>
+            <tspan x="785.592" y="511">returned</tspan>
+        </text>
+        <text id="Return-data-from-API" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#131212">
+            <tspan x="917.728" y="763">Return data </tspan>
+            <tspan x="930.064" y="782">from API</tspan>
+        </text>
+        <text id="Give-access-token-to" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#131212">
+            <tspan x="77.56" y="623">Give access token</tspan>
+            <tspan x="87.792" y="642">to back-end for</tspan>
+            <tspan x="88.104" y="661">API requests to </tspan>
+            <tspan x="79.736" y="680">“resource server”</tspan>
+        </text>
+        <text id="Use-access-token-to" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#131212">
+            <tspan x="461.12" y="671">Use access token</tspan>
+            <tspan x="481.736" y="690">to make API </tspan>
+            <tspan x="496.2" y="709">requests</tspan>
+        </text>
+    </g>
+</svg>

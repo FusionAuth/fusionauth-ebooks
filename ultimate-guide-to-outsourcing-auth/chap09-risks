@@ -1,0 +1,15 @@
+# Risks
+
+C> *Everything in life has some risk, and what you have to actually learn to do is how to navigate it.*
+C>
+C> -- Reid Hoffman
+
+Risk is everywhere, including in auth systems. You can be aware of it and you can plan to mitigate it, but it'll still be there. Beyond any normal software architectural risk, there are specific issues for auth systems.
+
+This section covers some of them. In this section, you'll learn:
+
+* Common implementation risks and how to mitigate them
+* What steps to take to avoid lock-in to a particular vendor
+* What to do if your auth system vendor is acquired.
+
+Let's take a deeper look at some of these risks.

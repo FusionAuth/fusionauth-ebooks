@@ -1,0 +1,18 @@
+# Evaluation
+
+C> *It is change, continuing change, inevitable change, that is the dominant factor in society today. No sensible decision can be made any longer without taking into account not only the world as it is, but the world as it will be.*
+C>
+C> -- Isaac Asimov
+
+You should spend a fair amount of time evaluating an auth system. As mentioned previously, this is an architectural choice akin to choosing a database or datastore. Auth systems can help accelerate development, provide security for crucial PII, and help your application succeed, but they get embedded in your applications. It's worth taking some time to ensure whatever you choose is a good fit for your needs.
+
+Like any architectural choice, picking an auth system is about understanding tradeoffs and planning for the future. In this section, you'll learn:
+
+* Why you might choose outsource your auth
+* How to sell that choice to your organization
+* What due diligence you should perform on vendors
+* The value of standards and standard compliant implementations
+* How to compare open source versus commercial solutions
+* Why you should do a proof of concept (POC) before committing
+
+Let's dive in.

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="842px" height="131px" viewBox="0 0 842 131" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path id="Line" d="M729.928029,69.4572448 L731.235392,70.1926367 L747.235392,79.1926367 L749.559593,80.5 L747.235392,81.8073633 L731.235392,90.8073633 L729.928029,91.5427552 L728.457245,88.9280286 L729.764608,88.1926367 L740.772,82 L426,82 L426,79 L740.775,79 L729.764608,72.8073633 L728.457245,72.0719714 L729.928029,69.4572448 Z" fill="#050505" fill-rule="nonzero"></path>
+        <path id="Line-2" d="M91.0719714,69.4572448 L92.5427552,72.0719714 L91.2353919,72.8073633 L80.226,79 L429,79 L429,82 L80.226,82 L91.2353919,88.1926367 L92.5427552,88.9280286 L91.0719714,91.5427552 L89.7646081,90.8073633 L73.7646081,81.8073633 L71.4404067,80.5 L73.7646081,79.1926367 L89.7646081,70.1926367 L91.0719714,69.4572448 Z" fill="#020202" fill-rule="nonzero"></path>
+        <text id="?" font-family="Montserrat-Bold, Montserrat" font-size="36" font-weight="bold" fill="#000000">
+            <tspan x="410.398" y="44">?</tspan>
+        </text>
+        <text id="High-Work-Factor" font-family="Montserrat-SemiBold, Montserrat" font-size="24" font-weight="500" fill="#000000">
+            <tspan x="0.728" y="125">High Work Factor</tspan>
+        </text>
+        <text id="Better-Performance" font-family="Montserrat-SemiBold, Montserrat" font-size="24" font-weight="500" fill="#000000">
+            <tspan x="596.12" y="125">Better Performance</tspan>
+        </text>
+    </g>
+</svg>

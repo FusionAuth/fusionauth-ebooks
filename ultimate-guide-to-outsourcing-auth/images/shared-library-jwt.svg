@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="815px" height="546px" viewBox="0 0 815 546" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <rect id="path-1" x="137" y="134" width="157" height="76"></rect>
+        <filter x="-4.5%" y="-6.6%" width="108.9%" height="118.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-3" x="388" y="134" width="157" height="76"></rect>
+        <filter x="-4.5%" y="-6.6%" width="108.9%" height="118.4%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-5" x="646" y="134" width="157" height="76"></rect>
+        <filter x="-4.5%" y="-6.6%" width="108.9%" height="118.4%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <ellipse id="path-7" cx="456.5" cy="466" rx="116.5" ry="66"></ellipse>
+        <filter x="-3.0%" y="-3.8%" width="106.0%" height="110.6%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <ellipse id="path-9" cx="461.5" cy="277" rx="63.5" ry="61"></ellipse>
+        <mask id="mask-10" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="127" height="122" fill="white">
+            <use xlink:href="#path-9"></use>
+        </mask>
+        <ellipse id="path-11" cx="727.5" cy="271" rx="63.5" ry="61"></ellipse>
+        <mask id="mask-12" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="127" height="122" fill="white">
+            <use xlink:href="#path-11"></use>
+        </mask>
+        <ellipse id="path-13" cx="209.5" cy="271" rx="63.5" ry="61"></ellipse>
+        <mask id="mask-14" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="127" height="122" fill="white">
+            <use xlink:href="#path-13"></use>
+        </mask>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path id="Line" d="M356.928029,167.457245 L358.235392,168.192637 L374.235392,177.192637 L376.559593,178.5 L374.235392,179.807363 L358.235392,188.807363 L356.928029,189.542755 L355.457245,186.928029 L356.764608,186.192637 L367.773,180 L365,180 L365,177 L367.773,177 L356.764608,170.807363 L355.457245,170.071971 L356.928029,167.457245 Z M353,177 L353,180 L345,180 L345,177 L353,177 Z M363,177 L363,180 L355,180 L355,177 L363,177 Z M313,177 L313,180 L305,180 L305,177 L313,177 Z M323,177 L323,180 L315,180 L315,177 L323,177 Z M333,177 L333,180 L325,180 L325,177 L333,177 Z M343,177 L343,180 L335,180 L335,177 L343,177 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path id="Line-4" d="M616.026335,167.31991 L617.327141,168.066839 L633.24689,177.208041 L635.559434,178.535916 L633.223758,179.822665 L617.14476,188.680759 L615.830941,189.404556 L614.383348,186.776919 L615.697166,186.053123 L626.761,179.958 L626.698835,179.957581 L621.699031,179.913345 L620.199089,179.900074 L620.225631,176.900192 L621.725572,176.913462 L626.725376,176.957698 L626.788,176.958 L615.833282,170.668451 L614.532476,169.921522 L616.026335,167.31991 Z M610.226022,176.81172 L611.725964,176.824991 L616.530722,176.867501 L616.725768,176.869227 L618.225709,176.882497 L618.199168,179.88238 L616.699226,179.869109 L616.504181,179.867384 L611.699422,179.824874 L610.199481,179.811603 L610.226022,176.81172 Z M600.226414,176.723249 L601.726355,176.73652 L606.726159,176.780755 L608.226101,176.794026 L608.199559,179.793909 L606.699618,179.780638 L601.699814,179.736402 L600.199872,179.723132 L600.226414,176.723249 Z M590.226805,176.634778 L591.726746,176.648048 L596.726551,176.692284 L598.226492,176.705555 L598.19995,179.705437 L596.700009,179.692167 L591.700205,179.647931 L590.200264,179.63466 L590.226805,176.634778 Z M580.227196,176.546306 L581.727138,176.559577 L586.726942,176.603813 L588.226883,176.617083 L588.200342,179.616966 L586.700401,179.603695 L581.700596,179.55946 L580.200655,179.546189 L580.227196,176.546306 Z M570.227588,176.457835 L571.727529,176.471106 L576.727333,176.515341 L578.227275,176.528612 L578.200733,179.528495 L576.700792,179.515224 L571.700988,179.470988 L570.201046,179.457718 L570.227588,176.457835 Z M560.227979,176.369364 L561.72792,176.382634 L566.727725,176.42687 L568.227666,176.440141 L568.201125,179.440023 L566.701183,179.426753 L561.701379,179.382517 L560.201438,179.369246 L560.227979,176.369364 Z M628.218,177.779 L628.205,179.162 L629.441,178.481 L628.218,177.779 Z" fill="#000000" fill-rule="nonzero"></path>
+        <g id="Rectangle">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <rect stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#147894" fill-rule="evenodd" x="137.5" y="134.5" width="156" height="75"></rect>
+        </g>
+        <g id="Rectangle">
+            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            <rect stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#147894" fill-rule="evenodd" x="388.5" y="134.5" width="156" height="75"></rect>
+        </g>
+        <g id="Rectangle">
+            <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+            <rect stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#147894" fill-rule="evenodd" x="646.5" y="134.5" width="156" height="75"></rect>
+        </g>
+        <text id="Auth-Service" font-family="Montserrat-SemiBold, Montserrat" font-size="26" font-weight="500" fill="#FBFBFB">
+            <tspan x="664.463401" y="175.05303">Service 3</tspan>
+        </text>
+        <text id="Auth-Service" font-family="Montserrat-SemiBold, Montserrat" font-size="26" font-weight="500" fill="#FBFBFB">
+            <tspan x="406.463401" y="178.05303">Service 2</tspan>
+        </text>
+        <text id="Auth-Service" font-family="Montserrat-SemiBold, Montserrat" font-size="26" font-weight="500" fill="#FBFBFB">
+            <tspan x="158.076401" y="178.05303">Service 1</tspan>
+        </text>
+        <g id="Oval">
+            <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+            <ellipse stroke="#979797" stroke-width="1" stroke-linejoin="square" fill="#F9B928" fill-rule="evenodd" cx="456.5" cy="466" rx="116" ry="65.5"></ellipse>
+        </g>
+        <use id="Oval" stroke="#000000" mask="url(#mask-10)" stroke-width="4" stroke-dasharray="5" xlink:href="#path-9"></use>
+        <use id="Oval" stroke="#000000" mask="url(#mask-12)" stroke-width="4" stroke-dasharray="5" xlink:href="#path-11"></use>
+        <use id="Oval" stroke="#000000" mask="url(#mask-14)" stroke-width="4" stroke-dasharray="5" xlink:href="#path-13"></use>
+        <text id="Shared-Library:-Veri" font-family="Montserrat-SemiBold, Montserrat" font-size="26" font-weight="500" fill="#151414">
+            <tspan x="356.977" y="466">Shared Library:</tspan>
+            <tspan x="375.502" y="498">Verify Token</tspan>
+        </text>
+        <text id="HTTP" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#060606">
+            <tspan x="312" y="150">HTTP</tspan>
+        </text>
+        <text id="Internal" font-family="Montserrat-SemiBold, Montserrat" font-size="26" font-weight="500" fill="#060606">
+            <tspan x="155.136" y="52">Internal</tspan>
+        </text>
+        <text id="External" font-family="Montserrat-SemiBold, Montserrat" font-size="26" font-weight="500" fill="#060606">
+            <tspan x="12.159" y="52">External</tspan>
+        </text>
+        <path id="Line-5" d="M237.313092,331.098192 L238.10745,331.705642 L348.247366,415.930283 L354.669,420.841 L350.744881,411.698805 L350.350347,410.779923 L352.188111,409.990856 L352.582644,410.909737 L358.01465,423.561054 L358.716043,425.194621 L356.955773,424.94574 L343.32319,423.018254 L342.333038,422.878258 L342.61303,420.897954 L343.603182,421.03795 L353.456,422.431 L347.032465,417.518999 L236.89255,333.294358 L236.098192,332.686908 L237.313092,331.098192 Z" fill="#000000" fill-rule="nonzero"></path>
+        <text id="HTTP" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#060606">
+            <tspan x="568" y="150">HTTP</tspan>
+        </text>
+        <text id="Incoming-HTTP" font-family="Montserrat-SemiBold, Montserrat" font-size="20" font-weight="500" fill="#060606">
+            <tspan x="19.97" y="143">Incoming</tspan>
+            <tspan x="42" y="167">HTTP</tspan>
+        </text>
+        <path id="Line-2" d="M120.928029,167.457245 L122.235392,168.192637 L138.235392,177.192637 L140.559593,178.5 L138.235392,179.807363 L122.235392,188.807363 L120.928029,189.542755 L119.457245,186.928029 L120.764608,186.192637 L131.773,180 L127,180 L127,177 L131.773,177 L120.764608,170.807363 L119.457245,170.071971 L120.928029,167.457245 Z M25,177 L25,180 L17,180 L17,177 L25,177 Z M35,177 L35,180 L27,180 L27,177 L35,177 Z M45,177 L45,180 L37,180 L37,177 L45,177 Z M55,177 L55,180 L47,180 L47,177 L55,177 Z M65,177 L65,180 L57,180 L57,177 L65,177 Z M75,177 L75,180 L67,180 L67,177 L75,177 Z M85,177 L85,180 L77,180 L77,177 L85,177 Z M95,177 L95,180 L87,180 L87,177 L95,177 Z M105,177 L105,180 L97,180 L97,177 L105,177 Z M115,177 L115,180 L107,180 L107,177 L115,177 Z M125,177 L125,180 L117,180 L117,177 L125,177 Z" fill="#000000" fill-rule="nonzero"></path>
+        <line x1="137" y1="0" x2="137.5" y2="553.5" id="Line-3" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-dasharray="5"></line>
+        <path id="Line-6" d="M478.5,337.5 L478.5,391.432 L483.378424,382.759739 L483.868686,381.888163 L485.611837,382.868686 L485.121576,383.740261 L478.371576,395.740261 L477.5,397.289729 L476.628424,395.740261 L469.878424,383.740261 L469.388163,382.868686 L471.131314,381.888163 L471.621576,382.759739 L476.5,391.432 L476.5,337.5 L478.5,337.5 Z" fill="#000000" fill-rule="nonzero"></path>
+        <path id="Line-7" d="M724.922493,343.15037 L725.84963,344.922493 L724.963568,345.386061 L583.886031,419.194839 L576.68,422.964 L586.627641,423.266229 L587.62718,423.296596 L587.566447,425.295673 L586.566908,425.265307 L572.805088,424.847215 L571.02813,424.79323 L571.997018,423.302677 L579.500665,411.758943 L580.045664,410.920507 L581.722537,412.010506 L581.177537,412.848942 L575.754,421.192 L582.958894,417.422717 L724.036432,343.613939 L724.922493,343.15037 Z" fill="#000000" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+# Implementation
+
+C> *There are no secrets to success. It is the result of preparation, hard work, and learning from failure.*
+C>
+C> -- Colin Powell
+
+Implementation of an auth system, whether migrating from an existing one or integrating a new one, is not a trivial task. If you have a large company, the actual rollout of a system may take years. I was at a conference and someone at such a company estimated that a complete consolidation of their identity infrastructure would take 3-5 years, even with unlimited budget.
+
+Rather than poorly covering an implementation process deeply tied to your applications and userbase, this guide will focus on major features to consider when you are in the implementation phase. A detailed implementation plan is beyond the scope of this book.
+
+In this section, you'll learn:
+
+* The difference between multi-tenant and single tenant auth systems
+* How to make sure your auth system can scale to meet your needs
+* When it makes sense to self host critical infrastructure such as an auth system
+* Migration options for moving auth data from an old system to a new one
+* Best practices around registration forms
+
+Let's jump in.

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1031px" height="358px" viewBox="0 0 1031 358" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" stroke="#191818" stroke-width="2" x="25" y="19" width="364" height="111"></rect>
+        <text id="OIDC" font-family="Montserrat-SemiBold, Montserrat" font-size="36" font-weight="500" fill="#008B07">
+            <tspan x="158" y="83">OIDC</tspan>
+        </text>
+        <text id="oAuth" font-family="Montserrat-SemiBold, Montserrat" font-size="36" font-weight="500" fill="#59558E">
+            <tspan x="150" y="258">oAuth</tspan>
+        </text>
+        <rect id="Rectangle" stroke="#191818" stroke-width="2" x="25" y="154" width="364" height="181"></rect>
+        <text id="“id_token”:-“JWT123…" font-family="Montserrat-Regular, Montserrat" font-size="36" font-weight="normal">
+            <tspan x="468" y="113" fill="#008B07">    “id_token”: “JWT123…”,</tspan>
+            <tspan x="468" y="157" fill="#59558E">    “access_token: “XYZ…”,</tspan>
+            <tspan x="468" y="201" fill="#59558E">    “expires_in”: 2042,</tspan>
+            <tspan x="468" y="245" fill="#59558E">    “token_type”: “Bearer”</tspan>
+            <tspan x="899.82" y="245" font-family="Montserrat-SemiBold, Montserrat" font-weight="500" fill="#59558E"></tspan>
+        </text>
+        <text id="{" font-family="Montserrat-Regular, Montserrat" font-size="36" font-weight="normal" fill="#59558E">
+            <tspan x="438" y="61">{</tspan>
+        </text>
+        <text id="}" font-family="Montserrat-Regular, Montserrat" font-size="36" font-weight="normal" fill="#59558E">
+            <tspan x="445" y="298">}</tspan>
+        </text>
+    </g>
+</svg>
