@@ -1,0 +1,25 @@
+# Resource Owner's Password Credentials grant
+
+The next grant on our list is the Resource Owner's Password Credentials grant. That's a lot of typing, so I'm going to refer to this as the Password grant for this section.
+
+This grant is also being deprecated and the current recommendation is that it should not be used. Let's discuss how this grant works and why it is being deprecated.
+
+The Password grant allows an application to collect the username and password directly from the user via a native form and send this information to the OAuth server. The OAuth server verifies this information and then returns an access token and optionally a refresh token.
+
+Many mobile applications and legacy web applications use this grant because they want to present the user with a login UI that feels native to their application. In most cases, mobile applications don't want to open a web browser to log users in and web applications want to keep the user in their UI rather than redirecting the browser to the OAuth server.
+
+There are two main issues with this approach:
+
+1. The application is collecting the username and **password** and sending it to the OAuth server. This means that the application must ensure that the username and password are kept completely secure. This differs from the Authorization Code grant where the username and password are only provided directly to the OAuth server.
+1. This grant does not support any of the auxiliary security features that your OAuth server may provide such as:
+    * Multi-factor authentication
+    * Password resets
+    * Device grants
+    * Registration
+    * Email and account verification
+    * Passwordless login
+
+Due to how limiting and insecure this grant is, it has been removed from the latest draft of the OAuth specification. It is recommended to not use it in production.
+
+If you aren't dissuaded by the above problems and you really need it, please [check out our documentation](https://fusionauth.io/docs/v1/tech/oauth/#example-resource-owner-password-credentials-grant), which walks you through how to use this grant. 
+

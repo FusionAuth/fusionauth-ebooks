@@ -1,0 +1,15 @@
+{sample: true}
+# Introduction
+
+I know what you are thinking, is this really another guide to OAuth 2.0? 
+
+Well, yes and no. This guide is different than most of the others out there because it covers all of the ways that we actually use OAuth. It also covers all of the details you need to be an OAuth expert without reading all the specifications or writing your own OAuth server. This guide is based on hundreds of conversations and client implementations as well as our experience building FusionAuth, an OAuth server which has been downloaded over a million times.
+
+If that sounds good to you, keep reading! 
+
+## OAuth overview
+
+OAuth 2.0 is a set of specifications that allow developers to easily delegate the authentication and authorization of their users to someone else. While the specifications don't specifically cover authentication, in practice this is a core piece of OAuth, so we will cover it in depth (because that's how we roll).
+
+What does that mean, really? It means that your application sends the user over to an OAuth server, the user logs in, and then the user is sent back to your application. However, there are a couple of different twists and goals of this process. Let's cover those next.
+

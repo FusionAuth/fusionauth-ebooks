@@ -1,0 +1,136 @@
+# Client Credentials grant
+
+The Client Credentials grant provides the ability for one `client` to authorize another `client`. In OAuth terms, a `client` is an application itself, independent of a user. Therefore, this grant is most commonly used to allow one application to call another application, often via APIs. This grant therefore implements the **Machine-to-machine authorization** mode described above.
+
+> With the Client Credentials grant, there is no user to log in.
+
+The Client Credentials grant leverages the Token endpoint of the OAuth server and sends in a couple of parameters as form data in order to generate access tokens. These access tokens are then used to call APIs. Here are the parameters needed for this grant:
+
+* `client_id` - this is client id that identifies the source application.
+* `client_secret` - this is a secret key that is provided by the OAuth server. This should never be made public and should only ever be stored on the source application server.
+* `grant_type` - this will always be the value `client_credentials` to let the OAuth server know we are using the Client Credentials grant.
+
+You can send the `client_id` and `client_secret` in the request body or you can send them in using Basic access authorization in the `Authorization` header. We'll send them in the body below to keep things consistent with the code from the Authorization Code grant above.
+
+Let's rework our TWGTL application to use the Client Credentials grant in order to support two different backends making APIs calls to each other. If you recall from above, our code that completed a TWGTL ToDo item also sent out a WUPHF. This was all inline but could have been separated out into different backends or microservices. I hear microservices are hot right now. 
+
+Let's update our code to move the WUPHF call into a separate service:
+
+```javascript
+router.post('/api/todo/complete/:id', function(req, res, next) {
+  // Verify the user is logged in
+  const user = authorizeUser(req);
+
+  // First, complete the ToDo by id
+  const todo = todoService.complete(req.params.id, user);
+
+  sendWUPHF(todo.title, user.id);
+});
+
+function sendWUPHF(title, userId) {
+  const accessToken = getAccessToken(); // Coming soon
+
+  const body = { 'title': title, 'userId': userId }
+  axios.post('https://wuphf-microservice.twgtl.com/send', body, { 
+        headers: {
+          auth: { 'bearer': accessToken }
+        }
+  }).then((response) => {
+        res.sendStatus(200);
+  }).catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+  });
+});
+```
+
+Here is the WUPHF microservice code that receives the access token and title of the WUPHF and sends it out:
+
+```javascript
+const express = require('express');
+const router = express.Router();
+const bearerToken = require('express-bearer-token');
+const request = require('request');
+const clientId = '9b893c2a-4689-41f8-91e0-aecad306ecb6';
+const clientSecret = 'setec-astronomy';
+
+var app = express();
+
+app.use(express.json());
+app.use(bearerToken());
+app.use(express.urlencoded({extended: false}));
+
+router.post('/send', function(req, res, next) {
+  const accessAllowed = verifyAccessToken(req); // Coming soon
+  if (!accessAllowed) {
+    res.sendStatus(403);
+    return;
+  }
+
+  // Load the access and refresh token from the database (based on the userId)
+  const wuphfTokens = loadWUPHFTokens(req.data.userId);
+
+  // Finally, call the API
+  axios.post('https://api.getwuphf.com/send', {message: 'I just did a thing: '+req.data.title}, { 
+    headers: {
+      auth: { 'bearer': wuphfTokens.accessToken, 'refresh': wuphfTokens.refreshToken }
+    }
+  }).then((response) => {
+    res.sendStatus(200);
+  }).catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  });
+});
+```
+
+We've now separated the code that is responsible for completing ToDos from the code that sends the WUPHF. The only thing left to do is hook this code up to our OAuth server in order to generate access tokens and verify them.
+
+Because this is machine to machine communication, the user's access tokens are irrelevant. We don't care if the user has permissions to call the WUPHF microservice. Instead, the Todo API will authenticate against `login.twgtl.com` and receive an access token for its own use. 
+
+Here's the code that generates the access token using the Client Credentials grant:
+
+```javascript
+const clientId = '82e0135d-a970-4286-b663-2147c17589fd';
+const clientSecret = 'setec-astronomy';
+
+function getAccessToken() {
+  // POST request to Token endpoint
+  const form = new FormData();
+  form.append('client_id', clientId);
+  form.append('client_secret', clientSecret)
+  form.append('grant_type', 'client_credentials');
+  axios.post('https://login.twgtl.com/oauth2/token', form, { headers: form.getHeaders() })
+    .then((response) => {
+      return response.data.access_token;
+    }).catch((err) => {
+      console.log(err);
+      return null;
+    });
+}
+```
+
+In order to verify the access token in the WUPHF microservice, we will use the Introspect endpoint. As discussed above, the Introspect endpoint takes an access token, verifies it, and then returns any claims associated with the access token. In our case, we are only using this endpoint to ensure the access token is valid. Here is the code that verifies the access token:
+
+```javascript
+const axios = require('axios');
+const FormData = require('form-data');
+
+function verifyAccessToken(req) {
+  const form = new FormData();
+  form.append('token', accessToken);
+  form.append('client_id', clientId); 
+  try {
+    const response = await axios.post('https://login.twgtl.com/oauth2/introspect', form, { headers: form.getHeaders() });
+    if (response.status === 200) {
+      return response.data.active;
+    }
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+```
+
+With the Client Credentials grant, there is no user to log in. Instead, the `clientId` and `clientSecret` act as a username and password, respectively, for the entity trying to obtain an access token. 
+

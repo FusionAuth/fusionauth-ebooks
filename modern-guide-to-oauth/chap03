@@ -1,0 +1,12 @@
+# OAuth Grants
+
+Now that we have covered the real world OAuth modes, let's dig into how these are actually implemented using the OAuth grants. The main OAuth grants are:
+
+* Authorization Code grant
+* Implicit grant
+* Resource Owner's Password Credentials grant
+* Client Credentials grant
+* Device grant
+
+We'll cover each grant type below and discuss how it is used, or not, for each of the OAuth modes above.
+
