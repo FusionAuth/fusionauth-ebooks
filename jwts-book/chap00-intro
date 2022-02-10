@@ -1,0 +1,152 @@
+# What are JWTs
+
+JSON Web Tokens, or JWTs
+
+JSON Web Token
+Pronounced ‘jot’
+Standard - RFC 7519
+signed and unsigned
+Stateless, portable tokens of identity
+Great for APIs
+Bearer tokens
+Produced by many Identity Providers
+Widely supported
+
+
+
+oauth specifies tokens, but explicitly doesn not specify format
+
+JWTs are one format for OAuth tokens and are used elswhere
+
+they are portable stateless tokens that are
+
+signed/unsigned
+
+signign aglgos
+
+claims
+
+In this ebook, you'l learn about JWTs and how they are used. 
+
+
+
+
+
+
+Almost every software application has users. In the online world, applications may have one or few users, if internal, or billions of users, if Facebook (hi Zuck!). Most applications customize functionality and the user interface for each user because of business rules or customer expectations.
+
+Users are a fundamental entity. If you are building an application, you'll almost certainly have users. At [FusionAuth](https://fusionauth.io), we've built a flexible auth system that makes managing users easy and secure. 
+
+Auth systems are referred to as identity and access management (IAM) or customer identity and access management (CIAM) as well. In general, IAM systems are used to manage employees and CIAM systems are used to manage customers, possibly in addition to employees.
+
+We talk to people about their auth systems every day and have helped plenty of folks migrate to FusionAuth from other systems, whether commercial, open source, or homegrown. While modern auth systems can be quite complex, three pieces of functionality appear in almost every one: authentication, authorization and user management. Let's look at each of these pieces.
+
+## Authentication
+
+Authentication is how an application knows who a user is, and is sometimes referred to as `AuthN`. In online applications, this is typically done by presenting a set of credentials. Username and password are common credentials. A system may require additional factors of authentication, such as a code the user has been texted, a time based one time password (TOTP), or possession of a physical object like a Yubikey.
+
+At the end of an authentication process, the application should know who the user is.
+
+## Authorization
+
+Authorization controls user access to resources, whatever they may be, and is sometimes referred to as `AuthZ`. These could be API endpoints, functionality in an application or anything else. This is a logical next step after knowing who the user is, as most applications have different levels of access.
+
+Consider the example of a blog. Some users may be administrators, able to change configuration settings. Others may be editors, able to approve and publish articles. Yet other users may be writers, unable to publish, but who can log in, add content, and submit it for approval. Each action (log in, change config settings, publish articles, etc), has a permission associated with it.
+
+The auth system must have some way of mapping users to these permissions. This can happen directly, with permissions being attached to the user, or indirectly, with users assigned to a group or role, and that group or role having permissions. Members of a group or role then inherit permissions.
+
+These permissions must be shared with the application, which can then allow or prohibit any action. If I am a writer for a blog, I should not see the 'publish' button. When an action is requested, you should always check permissions in the back end of your application, since the front end may have been tampered with.
+
+## User Management
+
+This is an administrative function. Once an application has users, a nice interface to manage them helps people supporting those users. This interface should be both user facing as well as an API. A smart looking user interface will allow customer support and other non-technical folks to find users' information and fulfill user requests, such as profile changes.
+
+An API will allow efficient bulk operations. Do you want to know how many users logged in during the last month? This is the kind of question that an API will let you answer.
+
+Now that we've examined key pieces of functionality in an auth system, let's examine four ways a developer might handle functionality supporting users.
+
+## Categories of Auth Functionality
+
+Like anything else, there's a spectrum of complexity for user management and auth, ranging from the non-existent to scalable and complicated solutions.
+
+### Who Are You?
+
+Maybe you aren't building a complex application. Maybe you are building an app where all functionality will either be static or available to everyone. An example of this might be a directory or a calculator application.
+
+In this case, you get to avoid the problem of users.
+
+You can stop reading now!
+
+### Not Invented Here Syndrome
+
+We see this solution a lot. I have done this myself. The application might start out with a users table. Engineers implement a hashing algorithm to protect passwords, a login form, and ship the code. They have other features to write.
+
+A home grown system seems simple at first, but then the engineering team needs to build out more and more of the auth flows users expect. This can include "forgot password", "self service registration", and more complicated integrations such as social sign-ons.
+
+At FusionAuth we've cataloged the following user auth flows:
+
+* Log in
+* Log out
+* Registration
+* Forgot password
+* Email verification
+* Changing a password
+* Two factor authentication
+* Passwordless authentication
+* Single sign on
+* Password expired
+* Account lockout by administrative decision or failed attempts
+* Password validation failed
+* Breach password detection
+* Federated log in with IdPs such as Google and Microsoft Active Directory
+* Advanced self service registration forms
+* Multi application logout (OAuth front channel logout)
+
+While users may not need all of these initially, as time goes on, more and more will be required.
+
+Eventually, events typically happen that make teams wish they hadn't rolled their own auth system. Sometimes it is engineering time spent building auth features; other times it is something more traumatic like a data breach due to an oversight or bug.
+
+Avoid building homegrown auth systems if at all possible. An auth system is similar to a database. Yes, there may be a valid use case for building your own database, but 99.99% of systems will be better served integrating an existing one.
+
+### Many Eyes Make For Shallow Bugs
+
+Many modern frameworks have built in auth systems. For example, Wordpress and Django have user auth systems included. There are also open source libraries which can be pulled into an application. For example Spring Java applications can use Spring Security, Ruby on Rails applications can use Devise and Omniauth, and Express applications can use Passport.js.  
+
+These solutions are great. They are battle tested by many users. They are often open source so teams can contribute code or patch issues they run into. Whatever framework or language is being used, research this type of option.
+
+Where these built in solutions often fall down is in a heterogeneous environment. Oftentimes these solutions are tightly coupled to the language or ideas of the environment they exist in. But when you get to a certain number of applications, you may want to extract authentication and authorization to a central, focused auth system.
+
+This may happen sooner than you think. For example, if building a SaaS todo application, there may also be a forum for community support, GSuite for employees and a support ticket system for paying customers. All these applications have users that need to be authenticated, authorized and managed. That's in addition to the user model for the todo application.
+
+While one could bolt each application into the todo application's user database, the system will have more flexibility if a standalone auth system is used.
+
+### No App Is an Island
+
+Just as a database is good at storing structured data, standalone auth systems are good at authentication, authorization and user management. These systems implement various standards, can be secured and scaled separately, and are a quick way to provide much of the functionality your users need.
+
+There are many of these systems available, and they all solve the fundamental problems in slightly different ways. Dimensions to consider when you are evaluating a standalone auth system include:
+
+* Self hosted or SaaS
+* Authentication, authorization, user management or all three? 
+* Specialized functionality
+* Standards support
+* Single sign-on support
+* Open source or commercial
+* Integrations with other auth tech (such as LDAP)
+* Which OAuth grants are supported
+* Cost
+* Operational complexity/support for your deployment environment
+* Specific features if needed (for example, customization of the look and feel with themes, or customization of the login flow)
+* Documentation and developer experience
+
+## Conclusion
+
+Almost every application will have some concept of users. Your needs can range from "I don't want any users at all" to "I need a standalone auth system". Being aware of the options, as well as knowing how to avoid a homegrown system, will help you build more secure applications faster.
+
+Now that you know what an auth system encompasses, let's look at some other aspects. This book has three sections:
+
+* Evaluation: what you need to know when you are looking at auth systems, including whether to outsource this critical functionality to a third party, the value of trying providers before you choose one, and other critical issues.
+* Risks: risks with an auth system and how can you mitigate them.
+* Implementation: more specific implementation guidance, including migration, scaling and more.
+
+This book features a variety of perspectives on these topics. Enjoy!
