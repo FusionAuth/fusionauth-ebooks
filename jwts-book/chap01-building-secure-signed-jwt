@@ -61,20 +61,20 @@ There are three factors in algorithm selection. Performance, security and operat
 
 #### Performance
 
-The first thing to consider is performance. A symmetric signing algorithm like HMAC is faster. Here are the benchmark results using the `ruby-jwt` library, which encoded and decoded a token 50,000 times:
+The first thing to consider is performance. A symmetric signing algorithm like HMAC is faster. Here are the benchmark results using the `ruby-jwt` library, which signed and verified a token 50,000 times:
 
 ```
-hmac encode
+hmac sign
   4.620000   0.008000   4.628000 (  4.653274)
-hmac decode
+hmac verify
   6.100000   0.032000   6.132000 (  6.152018)
-rsa encode
+rsa sign
  42.052000   0.048000  42.100000 ( 42.216739)
-rsa decode
+rsa verify
   6.644000   0.012000   6.656000 (  6.665588)
-ecc encode
+ecc sign
  11.444000   0.004000  11.448000 ( 11.464170)
-ecc decode
+ecc verify
  12.728000   0.008000  12.736000 ( 12.751313)
 ```
 
@@ -108,7 +108,7 @@ Therefore no claims are required by the RFC. But to maximize security, the follo
 
 * `iss` identifies the issuer of the JWT. It doesn't matter exactly what this string is as long as it is unique, doesn't leak information about the internals of the issuer, and is known by the consumer.
 * `aud` identifies the audience of the token. This can be a scalar or an array value, but in either case it should also be known by the consumer.
-* `nbf` and `exp` claims determine the timeframe that the token is valid. The `nbf` claim can be useful if you are issuing a token for future use. The `exp` claim, a time beyond which the JWT is no longer valid, should always be set. These are both in seconds since the unix epoch.
+* `nbf` and `exp` claims determine the timeframe that the token is valid. The `nbf` claim can be useful if you are issuing a token for future use, as it declares the time before which the token is not valid ("not before"). The `exp` claim, a time beyond which the JWT is no longer valid, should always be set. These are both in seconds since the unix epoch.
 
 ### Revocation 
 
@@ -191,7 +191,3 @@ If you are going to use claims for further information processing, make sure you
 
 JWTs are a flexible technology, and can be used in many ways. We discussed a number of steps you can take, as either a creator, client or consumer of tokens, to ensure your JWTs are as secure as possible.
 
-## References
-
-* [The JWT RFC](https://tools.ietf.org/html/rfc7519)
-* [JWT best practices](https://tools.ietf.org/html/rfc8725)
