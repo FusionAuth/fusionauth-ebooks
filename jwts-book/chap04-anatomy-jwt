@@ -1,0 +1,225 @@
+# Anatomy of a JWT
+
+In this chapter, you'll learn more about the nuts and bolts of a JSON Web Token and what goes into it.
+
+Here's a JWT, freshly minted:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ODg5MGQxOSJ9.eyJhdWQiOiI4NWEwMzg2Ny1kY2NmLTQ4ODItYWRkZS0xYTc5YWVlYzUwZGYiLCJleHAiOjE2NDQ4ODQxODUsImlhdCI6MTY0NDg4MDU4NSwiaXNzIjoiYWNtZS5jb20iLCJzdWIiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDEiLCJqdGkiOiIzZGQ2NDM0ZC03OWE5LTRkMTUtOThiNS03YjUxZGJiMmNkMzEiLCJhdXRoZW50aWNhdGlvblR5cGUiOiJQQVNTV09SRCIsImVtYWlsIjoiYWRtaW5AZnVzaW9uYXV0aC5pbyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhcHBsaWNhdGlvbklkIjoiODVhMDM4NjctZGNjZi00ODgyLWFkZGUtMWE3OWFlZWM1MGRmIiwicm9sZXMiOlsiY2VvIl19.dee-Ke6RzR0G9avaLNRZf1GUCDfe8Zbk9L2c7yaqKME
+```
+
+This may look like a lot of gibberish, but if you know what a JWT is, it begins to make sense.
+
+A signed JWT (there are other kinds, but I'll focus on signed JWTs) has three sections, separated by periods: `.`. There's a header, which starts with `eyJhbGc`, then a body or payload, which starts with `eyJhdWQ`, and then a signature, which starts with `dee-K`. A signed JWT may also be called a JWS.
+
+Let's break this JWT apart into those sections and dig a bit deeper.
+
+## The header
+
+`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ODg5MGQxOSJ9` is the header. The header contains metadata about a JWT, including the key identifier, what algorithm was used to sign in and other information.
+
+If you run the header through a base64 decoder:
+
+```bash
+echo 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ODg5MGQxOSJ9'|base64 -d
+```
+
+You will see this result:
+
+```
+{"alg":"HS256","typ":"JWT","kid":"f58890d19"}%   
+```
+
+This indicates that the JWT was signed with a symmetric algorithm. The list of algorithms and their support level is:
+
+ +--------------+-------------------------------+--------------------+
+   | "alg" Param  | Digital Signature or MAC      | Implementation     |
+   | Value        | Algorithm                     | Requirements       |
+   +--------------+-------------------------------+--------------------+
+   | HS256        | HMAC using SHA-256            | Required           |
+   | HS384        | HMAC using SHA-384            | Optional           |
+   | HS512        | HMAC using SHA-512            | Optional           |
+   | RS256        | RSASSA-PKCS1-v1_5 using       | Recommended        |
+   |              | SHA-256                       |                    |
+   | RS384        | RSASSA-PKCS1-v1_5 using       | Optional           |
+   |              | SHA-384                       |                    |
+   | RS512        | RSASSA-PKCS1-v1_5 using       | Optional           |
+   |              | SHA-512                       |                    |
+   | ES256        | ECDSA using P-256 and SHA-256 | Recommended+       |
+   | ES384        | ECDSA using P-384 and SHA-384 | Optional           |
+   | ES512        | ECDSA using P-521 and SHA-512 | Optional           |
+   | PS256        | RSASSA-PSS using SHA-256 and  | Optional           |
+   |              | MGF1 with SHA-256             |                    |
+   | PS384        | RSASSA-PSS using SHA-384 and  | Optional           |
+   |              | MGF1 with SHA-384             |                    |
+   | PS512        | RSASSA-PSS using SHA-512 and  | Optional           |
+   |              | MGF1 with SHA-512             |                    |
+   | none         | No digital signature or MAC   | Optional           |
+   |              | performed                     |                    |
+   +--------------+-------------------------------+--------------------+
+
+This table is from from RFC 7518. Consult the software you use to create JWTs for details on which algorithms are supported.
+
+There can be other metadata in this section of the JWT. The `typ` header indicates what kind of JWT this is. In this case, it is `JWT`, but other values are valid. For instance, if the JWT conforms to RFC 9068, it may have the value `at+JWT` indicating it is an access token.
+
+Finally, the `kid` value indicates what key was used to sign the JWT. For a symmetric key this value is less important because there is a shared secret between the system which signed the JWT and the system which verified the JWT. But for an asymmetric signing algorithm, this value lets the consumer of a JWT look up the correct public key which corresponds to the private key used to sign this JWT. This is critical to correct signature verification and hence to the trustability and integrity of the JWT.
+
+Typically, you'll offload most of the functionality that examines the header values to a library. There are plenty of good open source JWT processing libraries, so you should understand the values, but probably won't have to implement the actual processing.
+
+## The body
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ODg5MGQxOSJ9.eyJhdWQiOiI4NWEwMzg2Ny1kY2NmLTQ4ODItYWRkZS0xYTc5YWVlYzUwZGYiLCJleHAiOjE2NDQ4ODQxODUsImlhdCI6MTY0NDg4MDU4NSwiaXNzIjoiYWNtZS5jb20iLCJzdWIiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDEiLCJqdGkiOiIzZGQ2NDM0ZC03OWE5LTRkMTUtOThiNS03YjUxZGJiMmNkMzEiLCJhdXRoZW50aWNhdGlvblR5cGUiOiJQQVNTV09SRCIsImVtYWlsIjoiYWRtaW5AZnVzaW9uYXV0aC5pbyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhcHBsaWNhdGlvbklkIjoiODVhMDM4NjctZGNjZi00ODgyLWFkZGUtMWE3OWFlZWM1MGRmIiwicm9sZXMiOlsiY2VvIl19.dee-Ke6RzR0G9avaLNRZf1GUCDfe8Zbk9L2c7yaqKME
+
+The payload, or body, is where things get interesting. This contains the useful data specific to the purpose of the JWT. For instance, if the JWT is used to represent a user who is authorized to do certain things, it'll contain information about that user as well as roles or other authorization info.
+
+Here's the example payload:
+
+```
+eyJhdWQiOiI4NWEwMzg2Ny1kY2NmLTQ4ODItYWRkZS0xYTc5YWVlYzUwZGYiLCJleHAiOjE2NDQ4ODQxODUsImlhdCI6MTY0NDg4MDU4NSwiaXNzIjoiYWNtZS5jb20iLCJzdWIiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDEiLCJqdGkiOiIzZGQ2NDM0ZC03OWE5LTRkMTUtOThiNS03YjUxZGJiMmNkMzEiLCJhdXRoZW50aWNhdGlvblR5cGUiOiJQQVNTV09SRCIsImVtYWlsIjoiYWRtaW5AZnVzaW9uYXV0aC5pbyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhcHBsaWNhdGlvbklkIjoiODVhMDM4NjctZGNjZi00ODgyLWFkZGUtMWE3OWFlZWM1MGRmIiwicm9sZXMiOlsiY2VvIl19
+```
+
+If you run the sample payload through a base64 decoder:
+
+```bash
+echo 'eyJhdWQiOiI4NWEwMzg2Ny1kY2NmLTQ4ODItYWRkZS0xYTc5YWVlYzUwZGYiLCJleHAiOjE2NDQ4ODQxODUsImlhdCI6MTY0NDg4MDU4NSwiaXNzIjoiYWNtZS5jb20iLCJzdWIiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDEiLCJqdGkiOiIzZGQ2NDM0ZC03OWE5LTRkMTUtOThiNS03YjUxZGJiMmNkMzEiLCJhdXRoZW50aWNhdGlvblR5cGUiOiJQQVNTV09SRCIsImVtYWlsIjoiYWRtaW5AZnVzaW9uYXV0aC5pbyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhcHBsaWNhdGlvbklkIjoiODVhMDM4NjctZGNjZi00ODgyLWFkZGUtMWE3OWFlZWM1MGRmIiwicm9sZXMiOlsiY2VvIl19' |base64 -d
+```
+
+You'll see this:
+
+```
+{
+  "aud": "85a03867-dccf-4882-adde-1a79aeec50df",
+  "exp": 1644884185,
+  "iat": 1644880585,
+  "iss": "acme.com",
+  "sub": "00000000-0000-0000-0000-000000000001",
+  "jti": "3dd6434d-79a9-4d15-98b5-7b51dbb2cd31",
+  "authenticationType": "PASSWORD",
+  "email": "admin@fusionauth.io",
+  "email_verified": true,
+  "applicationId": "85a03867-dccf-4882-adde-1a79aeec50df",
+  "roles": [
+    "ceo"
+  ]
+}
+```
+
+Note that the algorithm to create signed JWTs may remove base64 padding, so there may be missing `=` signs, depending on the length of the content. You can [learn more about it here](https://datatracker.ietf.org/doc/html/rfc7515#appendix-C). 
+
+The payload contains the information your application probably cares about, so let's take a look at this more closely. Each of the keys of the JSON object are called claims. Some claims are standardized and are controlled by various standards bodies. You can view [those claims here](https://www.iana.org/assignments/jwt/jwt.xhtml). Examples of these include claims such as the `iss` claim and the `aud` claim. Both of these have defined meanings in a JWT. 
+
+There are other claims that are not standardized, such as `authenticationType`. These claims can encode business domain information or custom data. `authenticationType` is a proprietary claim that FusionAuth uses to inform the consumer of the JWT what method of authentication was used by the user at the time of JWT creation.
+
+You can put any claims you want into a JWT, including business specific informatoin that might be useful to downstream consumers of the JWT. As you can see from the `roles` claim, they don't have to be simple JSON primitives. They can be any data structure which can be represented in JSON.
+
+### Claims to verify
+
+As a consumer of the JWT, you should verify certain claims.
+
+At a minimum, verify these claims:
+
+* `iss`. This claim identifies the issuer of the JWT. It doesn't matter exactly what this string is (UUID, domain name, URL, etc) as long as the issuer and consumer of the JWT agree on valid values.
+* `aud`. This identifies the audience of the token, that is, who should be consuming it. `aud` may be a scalar or an array value. Again, the issuer and the consumer of the JWT should agree on the valid values.
+* `nbf` and `exp`. These claims determine the timeframe for which the token is valid. The `nbf` claim can be useful if you are issuing a token for future use. The `exp` claim, a time beyond which the JWT is no longer valid, should always be set. Unlike other claims, these have a defined format: seconds since the unix epoch.
+
+In addition to these, you should verify any business domain specific claims. For instance, someone consuming the above JWT might not allow access if `authenticationType` is not a value they expect.
+
+You should avoid putting unused claims into a JWT. While there is no limit to the size of a JWT, in general the larger they are, the more CPU is required to sign and verify them and the more time it takes to transport them. You should benchmark your expected JWT size to have an understanding of the performance characteristics.
+
+### Claims and security
+
+The claims of the JWT are, as mentioned above, transparent to anyone who can view the JWT. As you saw above, all you need to view the plaintext version of the claims is a base64 decoder, which is available at every command line and all over the internet.
+
+This means that you shouldn't put anything that you don't want seen into a JWT. This includes:
+
+* private information such as government Ids
+* secrets like passwords
+* anything that would leak information like an integer id
+
+Another security concern is related to the verification of the `aud` claim. Since the `aud` claim indicates who should receive this JWT, but your service already has possession of it, isn't the additional verification makework? Nope.
+
+Imagine a scenario where you have two different APIs. One is to create and manage todos and the other is a billing API, where you can transfer money. They may both have a role of `admin`, but that role means vastly different things in terms of what actions can be taken. 
+
+If both the todo and billing APIs don't verify that a JWT was created for them, an attacker could take a JWT from the todo API with the `admin` role and present it to the billing API. This would be at best a bug and at worst an escalation of privilege with possible negative ramifications for bank accounts.
+
+## Signature
+
+The signature of a JWT is critical, because it guarantees the integrity of the contents of the payload and the header. Verifying the signature should be the first step that any consumer of a JWT performs and if the signature doesn't match, no further processing should take place.
+
+While you can read the [relevant portion of the specification](https://datatracker.ietf.org/doc/html/rfc7515#page-15) to learn how the signature is generated, the high level overview is:
+
+* the header is turned into a base64 URL encoded string
+* the payload is turned into a base64 URL encoded string
+* they are concatenated with a `.`
+* the resulting string is run through the cryptographic algorithm selected, along with the corresponding key
+* the signature is base64 URL encoded
+* the encoded signature is appended to the string with a `.` as a separator
+
+When the JWT is recieved, the same operations can be done. If the signature is verified to be correct, the contents of the payload are unchanged from when the JWT was created.
+
+## Limits
+
+What are common limits around JWTs? This is a question that comes up a lot. 
+
+In the specifications, there are no hard limits on length of JWTs. There are two main things to think about:
+
+* Where are you going to store the JWT
+* What is the performance penalty of large JWTs
+
+### Storage
+
+JWTs can be sent in HTTP headers and stored in cookies. In these scenarios, the storage mechanism dictates the size supported.
+
+For example, the typical storage limit for cookies in a browser is XXX. The limit on HTTP headers is XXX.
+
+Consult the relevant specifications or other resources for limits for other use cases. 
+
+### Performance penalty
+
+Because JWTs can contain all kinds of user information in a structured manner, you may be tempted to put too much in them.
+
+Be aware that this can degrade performance. It can do so both in the signing and verification steps, as well as during transport.
+
+For an example of the former, here are the results of a benchmark from signing and verifying two different JWTs. Each operation was done 50,000 times. 
+
+This JWT had a body approximately 180 characters in length; the total encoded token length was between 300 and 600, depending on the siging algorithm used.
+
+```
+hmac sign
+  1.632396   0.011794   1.644190 (  1.656177)
+hmac verify
+  2.452983   0.015723   2.468706 (  2.487930)
+rsa sign
+ 28.409793   0.117695  28.527488 ( 28.697615)
+rsa verify
+  3.086154   0.011869   3.098023 (  3.109780)
+ecc sign
+  4.248960   0.017153   4.266113 (  4.285231)
+ecc verify
+  7.057758   0.027116   7.084874 (  7.113594)
+```
+
+The next JWT payload was of approximately 1800 characters, so ten times the size of the previous token. This had a total token length of 2400 to 2700 characters.
+
+```
+hmac sign
+  3.356960   0.018175   3.375135 (  3.389963)
+hmac verify
+  4.283810   0.018320   4.302130 (  4.321095)
+rsa sign
+ 32.703723   0.172346  32.876069 ( 33.072665)
+rsa verify
+  5.300321   0.027455   5.327776 (  5.358079)
+ecc sign
+  6.557596   0.032239   6.589835 (  6.624320)
+ecc verify
+  9.184033   0.035617   9.219650 (  9.259225)
+```
+
+You can see that the total time increased for the longer JWT, but typically not linearly. The increase in time taken ranges from about 20% for RSA signing to approximately 100% for HMAC signing.
+
+You should also be mindful of additional time taken to transport longer JWT; this can be tested and optimized in the same way you would with any other API or HTML content.
+
+## Conclusion
+
+Signed JWTs have a header, body, and signature. Understanding all three of these components are critical to the correct use of JWTs.
