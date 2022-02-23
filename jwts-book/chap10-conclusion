@@ -1,0 +1,8 @@
+# Conclusion
+
+This book has covered a fair bit of ground on the topic of JWTs. I hope you enjoyed learning more about this powerful token format and have a better understanding of this technical topic. At the end of the day, JWTs are another tool, and the goal is not to use them everywhere, but to feel more comfortable about when JWTs make sense and when they do not. 
+
+You also learned about revocation solutions and the implementation tradeoffs available for this vital function.
+
+As a widely supported, understandable, flexible way to transport information that can be cryptographically verified, JWTs deserve a place in your developer toolbelt. I hope this book helped you decide that they've earned it.
+
