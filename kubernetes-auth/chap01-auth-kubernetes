@@ -1,0 +1,177 @@
+﻿# Auth and Workloads
+
+Kubernetes is used to handle the following kinds of workloads, typically:
+
+* Legacy monolithic apps. Here you are looking to move to Kubernetes to take advantage of the operational benefits, without necessarily rearchitecting how the applications themselves work. 
+* A monolithic application or applications you are evolving toward a microservices architecture. 
+* Existing microservices you are porting over. This might be moving from a homegrown or other standardized orchestration framework like Mesos.
+
+How does auth interact with each of these scenarios?
+
+In the first case, legacy apps, your authentication infrastructure probably won’t change. While you can use an external, standards based auth service like FusionAuth to add single sign-on (SSO) between your applications, such changes won’t be Kubernetes specific and aren't therefore covered in this book. 
+
+If you'd like to learn more about SSO, [FusionAuth's SSO guide](https://fusionauth.io/docs/v1/tech/guides/single-sign-on) covers that topic in both the general case and implementation with FusionAuth. 
+
+In this case, to minimize risk, you’ll want to complete a migration to Kubernetes before considering application code changes. Don't change the engine while the car is being towed!
+
+In the latter two situations, however, you’ll want to ensure access for both users and any services is controlled.
+
+In other words, you'll need to consider how to implement authentication and authorization in the context of your Kubernetes based microservices architecture.
+
+First, though, let's take a step back and ask what auth actually is.
+
+## What is Auth?
+
+Auth is a portmanteau of authentication and authorization and delineates who is making requests and what actions they are allowed. Typically, auth also covers user management, which is provisioning users who can then be authenticated and authorized.
+
+As mentioned above, with Kubernetes, plenty of complex functionality is built-in, such as scaling and resiliency. That is one major reason to use it for your applications! 
+
+But auth is not a built-in Kubernetes service. You'll need to select or build this functionality yourself. In Kubernetes, there are multiple levels of auth to consider: infrastructure and application. Let's do an overview of these concerns; other chapter will cover these in more detail as well.
+
+## Infrastructure auth
+
+The first type of auth controls access to Kubernetes managed resources. For example, controlling who can start pods or create deployments. 
+
+This functionality is well defined and you can use a variety of different mechanisms to enforce access control. Controlling who can view, delete and modify infrastructure is pretty important. 
+
+If you are delegating to a standalone auth service for this functionality using OpenID Connect (OIDC), be careful about running it in the Kubernetes cluster to which it controls access. (Here’s a tutorial on how to set up such RBAC using OIDC and FusionAuth.) You don’t want to have the service be unavailable and then be unable to manage your cluster. 
+
+Options to avoid this fate include:
+
+* Running a separate Kubernetes cluster for this critical infrastructure.
+* Having a fallback auth strategy, such as usernames and passwords.
+* Running an auth provider outside of Kubernetes, but internal to the network the cluster is operating on.
+* Using a SaaS solution for your auth server. Be aware of any network access limits you may face. Some SaaS providers may be able to run inside your network.
+
+## Application Auth
+TODO stopped here
+
+The other type of auth is at a different level of abstraction: the application layer. That is, how do your applications know who a request is from and what the user or entity has permission to do? Almost all applications have the concept of a user and permissions which control what they have access to.
+
+Let’s consider the two scenarios mentioned above: evolving an application toward microservices or porting an application already split up into microservices. A greenfield microservices application has the same auth considerations as the latter.
+
+
+If you are evolving a monolithic application towards microservices, you’ll need to split the application up into bounded contexts. User management and auth is a common context and the definitions of the domain objects are well understood by most developers. Therefore auth can be a good option to extract first.
+
+
+The steps to take would be:
+* Choose an auth server and deploy it to Kubernetes.
+* Plan the groups and roles your application needs.
+* Set up your application to delegate to the auth server. Typically you can use an open-source library to handle the authentication process.
+* Modify your application to ensure it can use the results of the authentication process to properly control access using roles or permissions. You may need to tweak how you handle sessions.
+* Evaluate your user data and determine if you want to perform a big bang or slow migration of that data.
+* Perform a test migration to a staging auth server instance. You can also point your application’s staging environment to test that the application integration is correct.
+* Migrate your user data and update your application production environment with the new code that delegates authentication to the auth server.
+* Work on moving other contexts to Kubernetes as microservices.
+
+
+When building a greenfield microservices application, the concerns are slightly different. 
+
+
+While you’ll still want to deploy an auth server to Kubernetes to manage users, you’ll also want the auth system to serve as a secure token service (STS). Using an STS lets you build a zero trust token based strategy. I’ll cover that more below.
+
+
+Auth at the gateway
+
+
+Microservices are typically fronted by an API gateway or an ingress. This can be done in front of the Kubernetes cluster or by an NGINX pod running within it. 
+
+
+This gateway also needs to authenticate and authorize requests. 
+
+
+There are a couple of potions. It can use tokens, timebound credentials typically generated by an OAuth grant. Tokens are flexible and secure and can be generated by a standalone auth server. API gateways often support validation of the token, especially if it is a JSON Web Token (JWT), which is a common format. 
+
+
+Below, the API gateway is checking a client token before any access to services behind that gateway is allowed.
+
+
+  
+
+
+
+API keys held by a client are an alternative and are conceptually more straightforward. Some API gateways have built-in support for throttling, managing and rotating of API keys.
+
+
+Auth between microservices
+
+
+Within a microservices system there are multiple ways to authenticate and authorize requests:
+
+
+* MTLS or client certificates, where a service has a client certificate and presents it as part of each request. This works well for service to service communication, but client certificates are typically not tied to individual users. 
+* API keys. Similar to client certificates, these arbitrary strings that each service possesses uniquely identify them. If you use these, make sure you plan for rotation. Since these strings aren’t cryptographically verifiable, they aren’t as secure as client certificates, but they are easier to implement.
+* Tokens. These short lived credentials can contain information about the bearer. Often JWTs are used as these tokens. They are typically cryptographically signed so that the contents can be trusted.
+
+
+An STS can be used to create tokens uniquely tied to one service. Below, the reminder service is performing a client credentials grant to get a token for the Todo service.
+
+
+
+
+  
+
+
+
+While you can choose more than one solution to implement, tokens are the most flexible. They can be granted to clients outside of your cluster and checked at the API gateway, as mentioned above. Tokens may contain authorization information such as roles or permissions. They can also contain any other useful data that can be represented as JSON. Tokens can also be minted by an STS for each user request or even for each microservices request. 
+
+
+Auth considerations
+
+
+When you are thinking about application auth in Kubernetes managed microservices, consider these scenarios:
+
+
+* User driven auth requests of microservices: a user request has been received by an application in your cluster. You need to determine who the user is and what actions they can perform.
+* Service to service requests: When scheduled jobs run, they may require more than one microservice. You want to know that microservice A is authorized to access microservice B.
+* Requests from one microservice on behalf of a user to another. This is a hybrid of the previous two situations. A request comes in and one microservice handles it but needs to access other services on behalf of the user. This hybrid is useful but optional.
+
+
+You have options for token handling when processing each of these types of requests:
+
+
+* Pass the token provided by a user to each microservice. The API gateway does no processing.
+* Mint a new token at the API gateway or right after the request passes through it. This new token can have a subset of the information provided by a user, a different expiration time and be signed by a different key.
+* Convert a token provided by a client into form parameters or a header to remove all token processing from microservices.
+* Require each request between microservices to be authenticated by a valid, microservice specific token, possibly including user specific details from an upstream provided token.
+
+
+Which of these makes sense depends on what information is provided in the token the API gateway processes, how much information each microservice needs, the risk of an access token being compromised, and whether you want to distribute your authorization logic.
+
+
+Finally, you could build a service to mint these tokens yourself, but there are a robust set of auth providers that are Kubernetes friendly. These handle authentication and embedding authorization information into a token. So, a better choice is to find an auth provider which works well within Kubernetes in the scenarios you have. There are many to choose from, both commercial and open source.
+
+
+Selecting an auth provider
+
+
+What are criteria for such an auth provider? While the nuts and bolts depend on what kind of application you are migrating over or running, there are common attributes.
+
+
+* Deployable as a container. If you are running in Kubernetes, the application portion of the auth provider should be containerized. You typically won’t want your auth provider to be external to your cluster, especially if you are using it to mint tokens for use within your microservices system.
+* Fast. Depending on your scenario, you could be getting tokens from this auth provider every time a request is made from one microservice to another, so pick one that is performant. Even if you are extracting auth from a monolithic application, you still want it to be fast because users want to get to the features you are building, not spend time logging in.
+* Scalable. You want to make sure that whatever auth server you are using can scale horizontally, since a key bottleneck for auth is in the CPU-intensive password hashing operation. FusionAuth scales horizontally to dozens of pods which handle thousands of requests per second.
+* Standards compliant. Make sure your auth provider supports OAuth2, OIDC and the relevant token RFCs such as RFC 7519.
+* API first, with support for tools you use to manage your cluster. You’ll want to manage the configuration of this auth server the same way you manage your cluster, whether that is with terraform, pulumi or golang code.
+* Supports mTLS. This is a nicety; you can add this on with an NGINX sidecar, but if you are using client certificates, you’ll want to ensure the auth server supports them as well.
+
+
+What does auth in Kubernetes mean for developers and devops practitioners?
+
+
+Once an auth server is set up and available, developers won’t have to worry much about user security and authentication or authorization. Instead of writing login pages and ensuring tokens are minted correctly, developers can offload auth to the external service. They’ll be able to focus on writing business logic.
+
+
+For devops folks and operators, an auth server offers a standard way to implement authentication, authorization and user management. They will need to decide whether or not to use an auth server at the infrastructure level, though.
+
+
+Both developers and devops practitioners should collaborate on the correct types of credentials to use within and at the boundaries of applications running within Kubernetes: token, API key, client certificates or some combination of all three.
+
+
+Conclusion
+
+
+Kubernetes allows easier development of software by automating parts of the software lifecycle, including deployments, rollbacks and scaling. However, it doesn't provide all the common infrastructure. 
+
+
+Authentication and authorization are components that require a Kubernetes friendly third party solution and some integration work. However, by carving auth out as a separate service and using tokens as short lived credentials, you’ll allow developers to focus on writing business logic.
