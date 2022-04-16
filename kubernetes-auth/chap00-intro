@@ -1,0 +1,20 @@
+﻿# Introduction
+
+Kubernetes! It seems like the whole world is excited about this new software deployment platform. 
+
+[From the project docs](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/), "Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation. It has a large, rapidly growing ecosystem."
+
+That's all well and good, but what kind of workloads are being moved over to this platform? There are three types of workloads moving to Kubernetes.
+
+* Legacy monolithic apps. Here you are looking to move to Kubernetes to take advantage of the operational benefits, without necessarily rearchitecting how the applications themselves work. 
+* A monolithic application or applications you are evolving toward a microservices architecture. 
+* Existing microservices you are porting over. This might be moving from a homegrown or other orchestration framework.
+
+In each of these cases, the applications running in those workloads probably have the concept of users. In fact, Kubernetes itself, being a platform, has the concept of users.
+
+And where you have users, you have authentication, authorization and user management. In other words, you have auth.
+
+The rest of this book will discuss various aspects of auth from the standpoint of Kubernetes and these workloads so commonly deployed to that platform.
+
+Enjoy!
+
