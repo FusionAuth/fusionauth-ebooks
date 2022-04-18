@@ -4,7 +4,7 @@ When you are using JWTs as part of your authorization solution in a microservice
 
 Consider this simple microservices based system. 
 
-IMAGE
+TODO IMAGE
 
 We have three different services, all protected by an API gateway. This API gateway could be running NGINX, Apache, or some other open source system. It could be a commercial packages such as HAProxy or Kong. It could also be a cloud vendor managed API gateway, such as an AWS Application Load Balancer or a Google Cloud Load Balancer. 
 
