@@ -1,0 +1,8 @@
+# Conclusion
+
+This book has covered a fair bit of ground on the topic authentication, authorization and Kubernetes. I hope you enjoyed learning more about how you can safely authenticate and authorize access to Kubernetes, both the internal clusters and the applications running on top of them. 
+
+You also learned about JSON Web Tokens and how token based auth can be used within microservices.
+
+At the end of the day, Kubernetes is an extremely powerful system with a lot of functionality included. Authentication and authorization are common to most applications, but require additional work to integrate with Kubernetes.
+
