@@ -1,4 +1,4 @@
-# Anatomy of a JWT
+# Anatomy of a JWT {#anatomy-jwt}
 
 In this chapter, you'll learn more about what goes into a JSON Web Token (JWT) and how they are constructed.
 
@@ -14,7 +14,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ODg5MGQxOSJ9.eyJhdWQiOiI4NWEwMzg
 
 This may look like a lot of gibberish, but as you learn more about JWTs, it begins to make more sense.
 
-There are a few types of JWTs, but I'll focus on signed JWTs as they are the most commonly used by systems like Kubernetest. A signed JWT may also be called a JWS and has three parts, separated by periods.
+There are a few types of JWTs, but I'll focus on signed JWTs as they are the most commonly used by systems like Kubernetes. A signed JWT may also be called a JWS and has three parts, separated by periods.
 
 There's a header, which in the case of the JWT above, starts with `eyJhbGc`. Then there is a body or payload, which above starts with `eyJhdWQ`. Finally, there is a signature, which starts with `dee-K` in the example JWT.
 
@@ -236,6 +236,8 @@ You can see that the total time increased for the longer JWT, but typically not 
 
 Be mindful of additional time taken to transport longer JWT; this can be tested and optimized in the same way you would with any other API or HTML content.
 
-## Conclusion
+## Summary
 
-Signed JWTs have a header, body, and signature. When using JWTs to secure applications running in Kubernetes, `understanding all three of these components are critical.
+Signed JWTs have a header, body, and signature. Each plays a role in delivering auth information to components which require it.
+
+When using JWTs to secure applications running in Kubernetes, `understanding all three of these components are critical.
