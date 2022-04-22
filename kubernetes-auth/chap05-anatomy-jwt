@@ -175,7 +175,7 @@ Symmetric algorithms are best used inside a trust boundary, because they require
 
 Asymmetric algorithms are best used between trust boundaries, because they require no shared secret. Instead, you are using public/private key algorithms such as RSA or ECC. In this case, the verifier must have access to the public key in order to confirm the integrity of the signed JWT. This imposes either deployment requirements or network access requirements.
 
-You may reissue tokens at trust boundaries. This is further described in chapter TODO
+You may reissue tokens at trust boundaries. This is [described in a previous chapter.](#tokens-kubernetes)
 
 ## Limits
 

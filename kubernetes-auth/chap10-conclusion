@@ -6,6 +6,8 @@ I hope you enjoyed learning more about how you can safely authenticate and autho
 
 You also learned about JSON web tokens and how token based auth can be used within microservices.
 
-At the end of the day, Kubernetes is an extremely powerful system with a lot of functionality included. However, authorization and authentication are not. While service meshes and API gateways offer some functionality, it's important to understand your options as you build your system on top of the orchestration framework.
+At the end of the day, Kubernetes is an extremely powerful system with a lot of functionality included. However, authorization and authentication are not.
+
+While service meshes and API gateways offer some functionality, it's important to understand your options as you build your system on top of the orchestration framework.
 
 
