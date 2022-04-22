@@ -32,7 +32,7 @@ But auth is not a built-in Kubernetes service. You'll need to select or build th
 
 The first type of auth controls access to Kubernetes managed resources. For example, controlling who can start pods or create deployments. 
 
-This functionality is well defined and you can use a variety of different mechanisms to enforce access control. Controlling who can view, delete and modify infrastructure is pretty important. 
+This functionality is well defined and you can use a variety of [different mechanisms](https://kubernetes.io/docs/reference/access-authn-authz/authentication/) to enforce access control. Controlling who can view, delete and modify infrastructure is pretty important. 
 
 If you are delegating to a standalone auth service for this functionality using OpenID Connect (OIDC), be careful about running it in the Kubernetes cluster to which it controls access. You don’t want to have the service be unavailable and then be unable to manage your cluster. 
 
@@ -123,9 +123,9 @@ What are criteria for such an auth provider? While the nuts and bolts depend on 
 * Deployable as a container. If you are running in Kubernetes, any auth required by applications should be containerized. You typically won’t want your auth provider to be external to your cluster, especially if you are using it to mint tokens for use within your microservices system.
 * Fast. Depending on your scenario, you could be getting tokens or keys from this auth provider every time a request is made from one microservice to another, so pick one that is performant. Even if you are extracting auth from a monolithic application, you still want it to be fast because users want to get to the features you are building, not spend time logging in.
 * Scalable. You want to make sure that whatever auth server you are using can scale horizontally, since a key bottleneck for auth is in the CPU-intensive password hashing operation. FusionAuth scales horizontally to dozens of pods which handle thousands of requests per second.
-* Standards compliant. Make sure your auth provider supports OAuth2, OIDC and the relevant token RFCs such as RFC 7519.
+* Standards compliant. Make sure your auth provider supports OAuth2, OIDC and the relevant token RFCs such as [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519).
 * API first, with support for tools you use to manage your cluster. You’ll want to manage the configuration of this auth server the same way you manage your cluster, whether that is with terraform, pulumi or golang code.
-* Supports mTLS. This is a nicety; you can add this on with an NGINX sidecar, but if you are using client certificates, you’ll want to ensure the auth server supports them as well.
+* Supports mTLS. This is a nicety; you can add this on with an [NGINX sidecar](https://zhimin-wen.medium.com/https-sidecar-f26ad139dafb), but if you are using client certificates, you’ll want to ensure the auth server supports them as well.
 
 ## Team Ramifications 
 
