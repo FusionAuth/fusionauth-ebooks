@@ -43,7 +43,7 @@ Options to avoid this fate include:
 * Running an auth provider outside of Kubernetes, but internal to the network the cluster is operating on.
 * Using a SaaS solution for your auth server. Be aware of any network access limits you may face. Some SaaS providers may be able to run inside your network.
 
-This topic will be [covered in more detail in later chapters.](#rbac-kubernetes)
+This topic will be [covered in more detail in a later chapter.](#rbac-kubernetes)
 
 ## Application Auth
 
@@ -77,7 +77,7 @@ There are a couple of potions. It can use tokens, timebound credentials typicall
 
 Below, the API gateway is checking a client token before any access to services behind that gateway is allowed.
 
-TODO IMAGE  
+![An example of service to service communication.](api-gateway-token-check.png)
 
 API keys held by a client are an alternative and are conceptually more straightforward. Some API gateways have built-in support for throttling, managing and rotating of API keys.
 
@@ -91,7 +91,7 @@ Within a microservices system there are multiple ways to authenticate and author
 
 An STS can be used to create tokens uniquely tied to one service. Below, the reminder service is performing a client credentials grant to get a token for the Todo service.
 
-IMAGE TODO
+![An example of service to service communication.](sts-service.png)
 
 While you can implement more than one of these, tokens are the most flexible. They can be granted to clients outside of your cluster and checked at the API gateway, as mentioned above.
 
