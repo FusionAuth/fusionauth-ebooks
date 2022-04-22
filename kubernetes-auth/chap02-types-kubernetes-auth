@@ -37,7 +37,7 @@ Once users are authenticated, information about them, such as username, group, a
 
 If relying on external sources to determine user resource access, such as an OIDC server or webhooks, you'll want to make sure you have another means of authentication independent of that external source. This allows you to modify the configuration of your cluster when those external resources are unavailable. 
 
-Here's a [tutorial on setting up Kubernetes RBAC with FusionAuth](/blog/2022/02/24/rbac-with-kubernetes-fusionauth).
+This is [covered in more detail in the next chapter.](#rbac-kubernetes)
 
 ## Application Auth
 
@@ -168,7 +168,9 @@ Tokens are typically provided by the requesting client and are the result of som
 
 Again, depending on your implementation, you may be able to configure a service mesh to examine claims in the token, such as the `roles` or `sub` claims. The former controls what roles a user has, while the latter is the identifier for a user. You can also use an ambassador container to examine these claims, or do so inside your microservices.
 
-These options are discussed in more detail in [this article about tokens](/learn/expert-advice/tokens/tokens-microservices-boundaries). What's important is that the auth information is included in the token, and can be shared between the various services to ensure they only offer up data or functionality that is appropriate for this user.
+Implementation options and more about tokens as an auth solution for Kubernetes applications are discussed [in detail in a future chapter.](#tokens-kubernetes).
+
+What's important to know is that the auth information is included in the token, and can be shared between the various services to ensure they only offer up data or functionality that is appropriate for this user.
 
 ### On Behalf Of Requests
 
