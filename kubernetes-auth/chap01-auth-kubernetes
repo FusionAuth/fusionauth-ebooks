@@ -34,7 +34,7 @@ The first type of auth controls access to Kubernetes managed resources. For exam
 
 This functionality is well defined and you can use a variety of different mechanisms to enforce access control. Controlling who can view, delete and modify infrastructure is pretty important. 
 
-If you are delegating to a standalone auth service for this functionality using OpenID Connect (OIDC), be careful about running it in the Kubernetes cluster to which it controls access. (Here’s a tutorial on how to set up such RBAC using OIDC and FusionAuth.) You don’t want to have the service be unavailable and then be unable to manage your cluster. 
+If you are delegating to a standalone auth service for this functionality using OpenID Connect (OIDC), be careful about running it in the Kubernetes cluster to which it controls access. You don’t want to have the service be unavailable and then be unable to manage your cluster. 
 
 Options to avoid this fate include:
 

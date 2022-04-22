@@ -18,7 +18,7 @@ As outlined there:
 
 > API requests are tied to either a normal user or a service account, or are treated as anonymous requests. This means every process inside or outside the cluster, from a human user typing kubectl on a workstation, to kubelets on nodes, to members of the control plane, must authenticate when making requests to the API server, or be treated as an anonymous user.
 
-So any API request that needs to read from, add to, or modify Kubernetes configuration must be authenticated (unless the request is available to anonymous users). The Kubernetes documentation outlines all supported options for both service accounts and user accounts, so this article won't cover them in detail.
+So any API request that needs to read from, add to, or modify Kubernetes configuration must be authenticated (unless the request is available to anonymous users). The Kubernetes documentation outlines all supported options for both service accounts and user accounts, so this chapter won't cover them in detail.
 
 A wide variety of options are supported, including
 
@@ -184,7 +184,7 @@ This can either be done via a [standardized OAuth grant](https://datatracker.iet
 
 ## Conclusion
 
-This article covered three different types of Kubernetes auth, each protecting a different resource or method of communication:
+This chapter covered three different types of Kubernetes auth, each protecting a different resource or method of communication:
 
 * infrastructure 
 * service-to-service

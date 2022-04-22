@@ -18,7 +18,7 @@ RBAC addresses this problem by assigning permissions to *roles*. As an example, 
 
 A Kubernetes cluster has many different resources that need to work in sync with each other in order to properly function. Using RBAC, you can employ a proper authorization policy for your cluster. For example, you can guarantee that a developer of one project cannot accidentally make changes to another project, nor delete a pod or service and bring the entire system down.
 
-This article uses the [OpenID Connect](https://openid.net/connect/) (OIDC) protocol to communicate with FusionAuth to implement RBAC in Kubernetes.
+This chapter uses the [OpenID Connect](https://openid.net/connect/) (OIDC) protocol to communicate with FusionAuth to implement RBAC in Kubernetes.
 
 When a client like `kubectl` wants to connect to the Kubernetes API, it will use the Authorization Code grant to get an access and refresh token from FusionAuth. This token will be used to authenticate with the Kubernetes API. Then the API server will talk to FusionAuth to verify that the client-provided token is valid. Finally, it will use the roles of the authenticated user to validate whether the client is allowed to perform the operation or not.
 
@@ -26,7 +26,7 @@ When a client like `kubectl` wants to connect to the Kubernetes API, it will use
 
 ## Implementing RBAC in Kubernetes
 
-Before you get started, there are a few prerequisites. First, you'll need a Kubernetes cluster with `kubectl` configured. This article uses [minikube](https://minikube.sigs.k8s.io/) and some minikube-specific features. However, it's easy to adapt the steps for your Kubernetes cluster of choice. 
+Before you get started, there are a few prerequisites. First, you'll need a Kubernetes cluster with `kubectl` configured. This chapter uses [minikube](https://minikube.sigs.k8s.io/) and some minikube-specific features. However, it's easy to adapt the steps for your Kubernetes cluster of choice. 
 
 If you are using minikube, you'll also need to install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) since you'll be using the [VirtualBox driver](https://minikube.sigs.k8s.io/docs/drivers/virtualbox/) for minikube.
 
