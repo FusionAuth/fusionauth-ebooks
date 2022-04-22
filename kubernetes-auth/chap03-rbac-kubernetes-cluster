@@ -6,7 +6,7 @@ RBAC can also be applied in the context of Kubernetes. If you want to restrict a
 
 In this chapter, you’ll implement RBAC in Kubernetes using [FusionAuth](https://fusionauth.io). However, these instructions will work with any OIDC compliant auth server. 
 
-Doing so can help protect the infrastruture layers of your Kubernetes cluster from mistaken or undesired access.
+Doing so can help protect the infrastructure layers of your Kubernetes cluster from mistaken or undesired access.
 
 ## What is RBAC?
 

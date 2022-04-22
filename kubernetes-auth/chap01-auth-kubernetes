@@ -14,7 +14,7 @@ If you'd like to learn more about SSO, [FusionAuth's SSO guide](https://fusionau
 
 In this case, to minimize risk, you’ll want to complete a migration to Kubernetes before considering application code changes. Don't change the engine while the car is being towed!
 
-In the latter two situations, however, you’ll want to ensure access for both users and any services is controlled.
+In the latter two situations, however, you’ll want to ensure access for both users and services are controlled.
 
 In other words, you'll need to consider how to implement authentication and authorization in the context of your Kubernetes based microservices architecture.
 
@@ -26,7 +26,7 @@ Auth is a portmanteau of authentication and authorization and delineates who is 
 
 As mentioned above, with Kubernetes, plenty of complex functionality is built-in, such as scaling and resiliency. That is one major reason to use it for your applications! 
 
-But auth is not a built-in Kubernetes service. You'll need to select or build this functionality yourself. In Kubernetes, there are multiple levels of auth to consider: infrastructure and application. Let's do an overview of these concerns; other chapter will cover these in more detail as well.
+But auth is not a built-in Kubernetes service. You'll need to select or build this functionality yourself. In Kubernetes, there are multiple levels of auth to consider: infrastructure and application. Let's do an overview of these concerns; later chapters will cover these in more detail.
 
 ## Infrastructure Auth
 
@@ -63,7 +63,7 @@ The steps to take would be:
 * Perform a test migration to a staging auth server instance. You can also point your application’s staging environment to test that the application integration is correct.
 * Migrate your user data and update your application production environment with the new code that delegates authentication to the auth server.
 
-Noe you are done with migrating auth to Kubernetes and can begin moving other contexts to Kubernetes as well.
+Now you are done with migrating auth to Kubernetes and can begin moving other contexts to Kubernetes as well.
 
 When building a greenfield microservices application, the concerns are slightly different. While you’ll want to deploy an auth server to Kubernetes to manage application users, you’ll also want the auth system to serve as a secure token service (STS). Using an STS lets you build a zero trust token based strategy. I’ll cover that more below.
 

@@ -130,7 +130,7 @@ Avoid putting unused claims into a JWT. While there is no limit to the size of a
 
 ### Claims and security
 
-The claims of a signed JWT are visible to anyone who possesses the token. This is typically mitigated by sendingn all traffic over TLS, but there are additional steps to take.
+The claims of a signed JWT are visible to anyone who possesses the token. This is typically mitigated by sending all traffic over TLS, but there are additional steps to take.
 
 All you need to view the claims in plaintext is a base64 decoder, which is available at every command line and everywhere in the internet. Do not put anything that should remain secret into a JWT.
 
@@ -240,4 +240,4 @@ Be mindful of additional time taken to transport longer JWT; this can be tested 
 
 Signed JWTs have a header, body, and signature. Each plays a role in delivering auth information to components which require it.
 
-When using JWTs to secure applications running in Kubernetes, `understanding all three of these components are critical.
+When using JWTs to secure applications running in Kubernetes, understanding all three of these components are critical.
