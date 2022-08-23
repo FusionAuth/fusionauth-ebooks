@@ -10,7 +10,6 @@ While there is a lot of literature out there on different authentication and aut
 
 Topics covered in this book include:
 
-* Cross-platform gaming accounts, where you can share user data for a game that runs on different platforms, such as Steam and XBox
 * How to secure user accounts, and why that's so important in the context of gaming
 * How the OAuth Device grant can help users sign into your game more easily, especially when a platform has limited input mechanisms, such as a console.
 * Best practices around one of the most exciting and terrifying moments of game development: user registration on launch day.

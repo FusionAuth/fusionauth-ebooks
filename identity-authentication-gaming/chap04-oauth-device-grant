@@ -1,55 +1,12 @@
-How the OAuth Device Authorization Grant Can Make Your Users’ Lives Easier
-Pitch: The OAuth Device Grant enables game users to authenticate using a device where they may already be authenticated, or which may have a far superior input user experience. In this tutorial, you will describe how developers can use the OAuth device grant to let users log in to a game with their phone or computer.
-
-Audience: Game Developers
-
-Client: FusionAuth
-
-Writer Deliverables: ~1500 word article,Screenshots,Code Samples
-
-Outline: (this is just a starting point, feel free to modify it as you see fit)
-- Introduction (1-3 paragraphs)
-    - Introduce the reader to OAuth grants (briefly)
-    - What are some of the uses cases of OAuth grants
-        - Third-party authentication providers
-        - Cross-device authentication
-        - [Writer’s Choice]
-    - What will the reader learn in this article?
-- What is the OAuth device grant? (3-5 paragraphs)
-    - Expand on what the OAuth device grant is
-    - Expand on the use cases from the introduction, narrowing down on the cross-device authentication use-case
-    - List out some of the advantages of using OAuth device grant over traditional authentication strategies
-- Implementing OAuth device grant (meat of article)
-    - Step-by-step instructions on implementing the OAuth device grant in a game
-        - NOTE TO WRITER: Be sure to include _why_ each step is required. Refer to the links in the examples and references to understand how to implement OAuth device grants
-        - [Writer’s Choice]
-- Conclusion (2-3 paragraphs)
-    - Restate what the reader has learned
-
-Reference(s):
-https://thomaslevesque.com/2020/03/28/using-the-oauth-2-0-device-flow-to-authenticate-users-in-desktop-apps/  example of desktop app 
-https://fusionauth.io/docs/v1/tech/oauth/#example-device-authorization-grant 
-https://fusionauth.io/blog/2020/06/17/building-cli-app-with-device-grant-and-golang 
-https://htamahc.medium.com/everyone-needs-a-little-oauth2-device-flow-in-their-lives-e7cb446dbeeb  good breakdown
-
-Example Article(s):
-https://fusionauth.io/learn/expert-advice/oauth/oauth-device-authorization 
-
-Target Keyword: NA
-
-Writer Name: Success Ologunsua
-
-Writer Profile URL: https://portal.draft.dev/writers/recIv78yi0mHo2SQk
-
------ Article
-
 # How the OAuth Device Authorization Grant Can Make Your Users’ Lives Easier
+
+C> *By Success Ologunsua*
 
 OAuth (pronounced “oh-auth”) grants are various types of authorization methods that enable users to share information between services and across devices without entering or compromising their password or username.
 
 They work well for multiple use cases, such as providing authentication for third-party service providers or for cross-device authentication. In particular, the OAuth device authorization grant allows users to sign in on a device with limited input ability by entering a code on another device. This type of flow can also help users sign in to online games.
 
-In this tutorial, you’ll learn how the OAuth device authorization grant is implemented in a game application so that users can authenticate by using their phone or computer.
+In this chapter, you’ll learn how the OAuth device authorization grant is implemented in a game application so that users can authenticate by using their phone or computer.
 
 ## What Is the OAuth Device Authorization Grant?
 
@@ -75,7 +32,9 @@ The device authorization grant provides fast, easy authentication to users. It o
 
 ## Using the OAuth Device Authorization Grant in a Game
 
-You’re going to see how the OAuth device authorization grant flow is implemented in a basic game so that users can log in to a game with their computer rather than the game console.
+You’re going to see how the OAuth device authorization grant flow is implemented in a basic game so that users can log in to a game with their computer rather than the game console. For this example, the game will run in a browser, but the Device grant will work with any game that has some component which can communicate with an identity server to obtain a token.
+
+You can pull out a computer and follow along, or just read the steps to get a feeling for what is involved.
 
 ### Prerequisites
 
@@ -83,16 +42,13 @@ To get started, you’ll need to do the following steps:
 
 * Install Python3 on your machine if you haven’t already. You can download it from [Python’s official website](https://www.python.org/).
 
-* Clone [this GitHub repository](https://github.com/See4Devs/Fusionauth-Device-Grant) to follow along. The code used in this repository is built on top of the main demo code that you can find on [FusionAuth’s GitHub repository](https://github.com/FusionAuth/fusionauth-example-device-grant).
+* Clone [TODO should be FusionAuth this GitHub repository](https://github.com/See4Devs/Fusionauth-Device-Grant) to follow along. The code used in this repository is built on top of the main demo code that you can find on [FusionAuth’s GitHub repository](https://github.com/FusionAuth/fusionauth-example-device-grant).
 
 Open the terminal and clone the repository:
 
-```terminal
-   
-   Git clone git@github.com:See4Devs/Fusionauth-Device-Grant.git
+```
+git clone git@github.com:See4Devs/Fusionauth-Device-Grant.git
 ``
-
-![Git tutorial project clone](https://imgur.com/7wp9exZ.png)
 
 * Install Docker Desktop on your machine. You have options for [Docker Mac](https://docs.docker.com/desktop/mac/install/) or [Docker Windows](https://docs.docker.com/desktop/windows/install/) installation.
 
@@ -100,7 +56,7 @@ Open the terminal and clone the repository:
 
 Once Docker Desktop is running, open your terminal and type the following commands: 
 
-	```
+```
 curl -o docker-compose.yml https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/docker-compose.yml
 
 curl -o .env https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/.env
@@ -109,31 +65,29 @@ docker-compose up
 
 ```
 
-![Docker Compose up](https://imgur.com/1Icqsed.png)
-
 The above commands will copy the docker-compose YAML file, copy the environment file for FusionAuth, then build the image to run the authorization server locally. 
 
 Go to the Docker dashboard. You should see two containers running, one with FusionAuth and one for Postgres, the database that FusionAuth will be using to store information. 
-
-![FusionAuth Docker dashboard](https://imgur.com/DfTZx8z.png)
 
 ### Set Up FusionAuth for Device Authorization
 
 Now that your Docker image for FusionAuth is running, you need to configure the identity provider for your demo application. Go to [http://localhost:9011/admin/setup-wizard](http://localhost:9011/admin/setup-wizard) and fill in your name, email, and password. Click **Submit**.
 
-![FusionAuth setup](https://imgur.com/NuBokUu.png)
+![TODO FusionAuth setup](https://imgur.com/NuBokUu.png)
 
 Go to Applications on the navigation bar and click on **Create a new application**. Name it `Test Grant` and save.
 
-![FusionAuth new application](https://imgur.com/5JWK6PY.png)
+![TODO FusionAuth new application](https://imgur.com/5JWK6PY.png)
 
 Click on **Edit** to edit the application you’ve just created. Go to the Enabled Grants section and enable the Device type from the list, and put as verification URL [https://example.com/device](https://example.com/device), in this demo we won't be using this verification url in our flow, because we will direct users to the device authorization page. Take note of your client ID and client secret because you’ll use them later in your demo app.
 
-![FusionAuth add application](https://i.imgur.com/owjRKDB.png)
+![TODO FusionAuth add application](https://i.imgur.com/owjRKDB.png)
 
 On the left navigation bar, go to Settings, then System Settings. Enable CORS filter by adding post as the allowed method, and the wild card `*` as the allowed origin. For production usage, you’d want to lock this down further, but for demo purposes this is fine.
 
-![FusionAuth CORS filter](https://i.imgur.com/6EsoMTe.png)
+![TODO FusionAuth CORS filter](https://i.imgur.com/6EsoMTe.png)
+
+CORS settings are needed because this is a browser based application. In other kinds of applications, such as a console, the communications would happen between two servers and configuring CORS would not be required.
 
 ### Demo App Configuration with FusionAuth
  
@@ -141,12 +95,10 @@ Next, configure and run the demo app project downloaded from the GitHub reposito
 
 Open the project with an editor of your choosing (for example, Visual Studio Code or Sublime), then go to the `main.js` file and modify the `clientId` to match the clientId of your `test Grant` application on FusionAuth.
 
-![Demo app ClientId](https://imgur.com/B4vxb8P.png)
-
 Open your terminal and go to the root directory of the project. Run the following command: 
 
-```Python
-   python3 -m http.server
+```python
+python3 -m http.server
 ```
 
 ![Terminal demo app](https://imgur.com/CWWcAk4.png)
@@ -157,7 +109,7 @@ Now that the app is running, use your browser to go to [http://localhost:8000/](
 
 ### Make a Request to the Device Verification Endpoint
 
-The code in the `main.js` file contains the `connectDevice()` function, which is used to make an [authorization request](https://fusionauth.io/docs/v1/tech/oauth/#example-device-authorization-grant) to FusionAuth’s endpoint authorization server at `/oauth2/device_authorize`.
+The code in the `main.js` file contains the `connectDevice()` function, which is used to make an [authorization request](https://fusionauth.io/docs/v1/tech/oauth/#example-device-authorization-grant) to FusionAuth’s endpoint authorization server at `/oauth2/device_authorize`. Because this is a browser based app, CORS permissions are needed.
 
 The request should look like the below code:
 
@@ -170,7 +122,7 @@ Content-Length: 67
 client_id=3c219e58-ed0e-4b18-ad48-f4f92793ae32&scope=offline_access
 ```
 
-The request is sent to the device authorization endpoint, along with the clientid and scope in the payload. The authorization server returns a response that includes data such as a verification URI, device code, and user code.
+The request is sent to the device authorization endpoint, along with the client id and scope in the payload. The authorization server returns a response that includes data such as a verification URI, device code, and user code.
 
 Below is a sample of the JSON response:
 
@@ -189,7 +141,7 @@ To start the authorization process, click on **Start** in the demo app. You shou
 
 ![Demo app device authorization](https://imgur.com/19ZZ44M.png)
 
-The interface also includes a QR code that contains the URL and user code; however, since you’re running the app locally, you won’t be able to open the QR code from a phone. To make that work, you could host your app and use a hosted FusionAuth. For simplicity, this tutorial keeps everything running locally.
+The interface also includes a QR code that contains the URL and user code; however, since you’re running the FusionAuth locally, you won’t be able to open the QR code from a phone. To make that work, you could host your app and FusionAuth on a public URL. For simplicity, however, we'll run everything locally.
 
 ### Authorize Access for Device
 
@@ -228,7 +180,7 @@ client_id=ed2ad3c5-5d57-4d74-9956-b2b5391bf8d8
     &grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Adevice_code
 ```
 
-The JSON response should look like this:
+The successful JSON response should look like this:
 
 ```json
 {
@@ -246,7 +198,9 @@ You have successfully logged in to the game without needing to enter a username 
 
 ## Conclusion
 
-The OAuth device authorization grant is an easy-to-integrate, powerful tool that, when implemented properly, can help your users more quickly and securely sign in to games without needing to manually enter their personal information. It also allows users to sign in across devices, which is a big benefit to users who might not be able to type efficiently on the device that they’re using to play your game.
+The OAuth device authorization grant is an easy-to-integrate, powerful tool that, when implemented properly, can help your users more quickly and securely sign in to games without needing to manually enter their personal information.
 
-When you use this grant, you’ll better optimize your game application’s performance while keeping your users’ data safe. This can help you improve UX for your game as well as your company’s reputation.
+It also allows users to sign in across devices, which is a big benefit to users who might not be able to type efficiently on the device that they’re using to play your game.
+
+When you use this grant, you’ll improve your game application’s performance while keeping your users’ data safe and making it easy for them to log in.
 

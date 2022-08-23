@@ -1,19 +1,12 @@
----
-layout: advice
-title: Securing Gaming User Accounts with Fraud Detection and Suspicious Activity Notification
-description: When it comes to gaming, saving progress is an essential job. Gaming user accounts do that and much more. However, just like any other virtual account, gaming accounts need to be secured from fraudulent activity as well. In this guide, learn about the significance of securing gaming accounts and the ways in which it can be done.
-author: Rabo James Bature
-image: advice/securing-gaming-accounts/securing-gaming-accounts.png
-category: Gaming and Entertainment
-date: 2022-06-01
-dateModified: 2022-06-01
----
+# Securing Gaming User Accounts 
+
+C> *By Rabo James Bature*
 
 As the industry continues to grow, gaming is becoming a [way for users to make money](https://www.teknosassociates.com/how-do-professional-gamers-make-money/) in addition to being a form of entertainment. Gamers need to be able to track and save their progress to qualify for prize money, esports league salaries, or sponsorships, as well as add to their streaming content or videos on demand. Their unique user accounts are vital to their success.
 
 Just like other virtual accounts, though, gaming accounts need to be secured from fraudulent activities. These accounts contain users’ personal and financial information, and a security breach can expose this information. This can damage your company’s reputation and cause legal problems.
 
-In this guide, you’ll learn more about securing gaming accounts and some best practices for doing so.
+In this chapter, you’ll learn more about securing gaming accounts and some best practices for doing so.
 
 ## Why Should You Secure Gaming Accounts?
  
@@ -54,8 +47,6 @@ Using MFA, you can request one of three types of additional information from use
 * Something the user is, such as a biometric ID
 
 What kind of additional factor makes sense for your users depends on their demographic and device. You should also make varying kinds of factors available, as the casual game player might want something easy to use like SMS whereas the professional esport player, with a more valuable account, will want a more secure factor such as a biometric ID tied to their phone.
-
-Learn more about [Multi-Factor Authentication](/learn/expert-advice/authentication/multi-factor-authentication).
 
 ### Geographic Alerts
 
