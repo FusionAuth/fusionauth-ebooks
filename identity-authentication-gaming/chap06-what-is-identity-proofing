@@ -2,17 +2,18 @@
 
 C> *By Deborah Ruck and Dan Moore*
 
-Identity theft is on the rise. In 2020, the [reported cases of identity theft](https://www.ftc.gov/reports/consumer-sentinel-network-data-book-2020) rose to 1,387,615, more than double the 650,572 cases reported in 2019. The COVID-19 pandemic accelerated the use of online transactions as businesses leveraged digital technologies to take advantage of new business opportunities. This resulted in the increase of sensitive information stored in the cloud and an elevated risk of identity theft. 
+Identity theft is on the rise. In 2020, the [reported cases of identity theft](https://www.ftc.gov/reports/consumer-sentinel-network-data-book-2020) rose to 1,387,615, more than double the 650,572 cases reported in 2019. The COVID-19 pandemic accelerated the use of online transactions as businesses leveraged digital technologies to take advantage of new business opportunities. This resulted in the increase of sensitive information stored in the cloud and an elevated risk of identity theft. In addition, [criminals are using online games to launder money](https://integrity.aristotle.com/2022/04/best-identity-verification-solutions-for-online-gaming/).
 
-An effective identity proofing solution is more critical to your business than ever before. As companies and users engage in more online transactions and digital services, businesses must take greater measures to confirm a person is who they say they are. Identity proofing verifies and authenticates the identity of legitimate customers to prevent fraudulent users from accessing your data. It is your first line of defense against data breaches and theft.
+An effective identity proofing solution is more critical to your business than ever before. As companies and users engage in more online transactions and digital services, including online gaming and esports, businesses must take greater measures to confirm a person is who they say they are. Identity proofing verifies and authenticates the identity of legitimate customers to prevent fraudulent users from accessing your data. It is your first line of defense against data breaches and theft.
+
 
 
 {% include _image.liquid src="/assets/img/advice/identity-proofing/identity-proofing-process.png" alt="The identity proofing process." class="img-fluid" figure=false %}TODO
 
 From a gaming and esports perspective, whether or not you need to use identity proofing depends on a variety of factors:
 
-* If your audience is children and you collect their PII, including a username, you may need to ensure parental consent, depending on your jurisdiction. Identity proofing may be involved in verifying such consent.
-* If money is involved in your game, such as a fantasy football league with real money bets that is regulated by a state gambling agency.
+* If your audience is children and you collect their PII, including a username, you may need to ensure parental consent, depending on your jurisdiction. Identity proofing can help you know that such consent is real.
+* When money is involved, such as a fantasy football league with regulated betting.
 * Whether you can rely on a third party identity provider, such as PSN, Steam or XBox, to take care of identity for you.
 
 In many cases, identity proofing is not necessary, but when it is, you'll want to make sure you get it right.

@@ -1,11 +1,13 @@
 # Conclusion
 
-This book has covered a fair bit of ground on the topic authentication, authorization and Kubernetes. 
+Games have some unique challenges when compared to other online applications:
 
-I hope you enjoyed learning more about how you can safely authenticate and authorize access to Kubernetes resources, both those internal to clusters as well as applications running on top of them. 
+* People are very passionate about their games.
+* With the rise of esports and competitive gaming, online gaming accounts have real monetary value.
+* Games can be available across different devices and even different gaming identity networks, but users expect a common experience.
+* Different devices have different input options, some of which are limited.
+* Games have intense launches that are unlike other typical consumer applications.
 
-You also learned about JSON web tokens and how token based auth can be used within microservices.
+All of these conspire to make all parts of gaming development challenging, but they also impact how gaming handles identity management and user accounts.
 
-At the end of the day, Kubernetes is an extremely powerful system with a lot of functionality included. However, authorization and authentication are not. While service meshes and API gateways offer some functionality, it's important to understand your options as you build your system on top of the orchestration framework.
-
-
+In this book we covered a variety of topics that address the above challenges, ranging from the strategic value of controlling your infrastructure, including your auth server, to how identity proofing works and why you might use it in your game, to best practices for allowing users to secure and authenticate against their accounts.
