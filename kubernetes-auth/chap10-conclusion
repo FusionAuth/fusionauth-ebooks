@@ -1,6 +1,6 @@
 # Conclusion
 
-This book has covered a fair bit of ground on the topic authentication, authorization and Kubernetes. 
+This book has covered a fair bit of ground on the topic of authentication, authorization and Kubernetes. 
 
 I hope you enjoyed learning more about how you can safely authenticate and authorize access to Kubernetes resources, both those internal to clusters as well as applications running on top of them. 
 
