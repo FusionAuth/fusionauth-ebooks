@@ -1,0 +1,13 @@
+# Conclusion
+
+Games have some unique challenges when compared to other online applications:
+
+* People are very passionate about their games.
+* With the rise of esports and competitive gaming, online gaming accounts have real monetary value.
+* Games can be available across different devices and even different gaming identity networks, but users expect a common experience.
+* Different devices have different input options, some of which are limited.
+* Games have intense launches that are unlike other typical consumer applications.
+
+All of these conspire to make all parts of gaming development challenging, but they also impact how gaming handles identity management and user accounts.
+
+In this book we covered a variety of topics that address the above challenges, ranging from the strategic value of controlling your infrastructure, including your auth server, to how identity proofing works and why you might use it in your game, to best practices for allowing users to secure and authenticate against their accounts.

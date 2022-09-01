@@ -1,0 +1,21 @@
+﻿# Introduction
+
+Like most applications, gaming and esports apps typically need some form of authentication and authorization. Depending on the game, a user's account may be anonymous, pseudonmyous, or tied to a real world identity. 
+
+If a game is single player and single device, authenticating the user may not be required, but once a game is available across devices or can be played with friends or others, game developers need to build authentication. And with authentication comes authorization, where some users may have access to different kinds of functionality.
+
+Auth is critical yet undifferentiated functionality. It's also the front door to your game; if the user can't log in, they can't enjoy what you've worked so hard to build.
+
+While there is a lot of literature out there on different authentication and authorization systems, especially from the perspective of employees/employers, this ebook focuses on specific needs of gaming and esports developers.
+
+Topics covered in this book include:
+
+* How to secure user accounts, and why that's so important in the context of gaming
+* How the OAuth Device grant can help users sign into your game more easily, especially when a platform has limited input mechanisms, such as a console.
+* Best practices around one of the most exciting and terrifying moments of game development: user registration on launch day.
+* What identity proofing is and why you might need to do it.
+
+And more. The chapters are written from a variety of author's perspectives.
+
+I hope you enjoy this dive into the world of auth with a gaming twist. 
+
