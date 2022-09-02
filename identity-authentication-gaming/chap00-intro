@@ -1,6 +1,6 @@
 ﻿# Introduction
 
-Like most applications, gaming and esports apps typically need some form of authentication and authorization. Depending on the game, a user's account may be anonymous, pseudonmyous, or tied to a real world identity. 
+Like most applications, gaming and esports apps typically need some form of authentication and authorization. Depending on the game, a user's account may be anonymous, pseudonymous, or tied to a real world identity. 
 
 If a game is single player and single device, authenticating the user may not be required, but once a game is available across devices or can be played with friends or others, game developers need to build authentication. And with authentication comes authorization, where some users may have access to different kinds of functionality.
 
