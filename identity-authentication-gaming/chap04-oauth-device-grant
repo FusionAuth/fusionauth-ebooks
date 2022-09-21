@@ -159,7 +159,7 @@ For simplicity, this chapter keeps everything running locally.
 
 Using a secondary device (a mobile phone or computer), the user visits the URL displayed on the device screen and starts to authenticate using the displayed code. In this case, you’ll use the same machine and open the URL displayed there. 
 
-Click on the URL to open it in your browser or a different one. All the pages shown in this chapter are the stock FusionAuth theme, but you can [easily modify the look and feel of the theme](/docs/v1/tech/themes/). Verify the device by entering the code and clicking "Submit".
+Click on the URL to open it in your browser or a different one. All the pages shown in this chapter are the stock FusionAuth theme, but you can [easily modify the look and feel of the theme](https://fusionauth.io/docs/v1/tech/themes/). Verify the device by entering the code and clicking "Submit".
 
 ![Entering the device grant code.](device-grant-code-entry.png)
 

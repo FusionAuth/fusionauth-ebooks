@@ -99,7 +99,7 @@ Installing FusionAuth is painless, and it can all be run from a simple cURL requ
 
 FusionAuth provides [multiple example requests](https://fusionauth.io/docs/v1/tech/5-minute-setup-guide#1-install-fusionauth) to install it. 
 
-This guide will assume you are using [Fast Path](/docs/v1/tech/installation-guide/fast-path), which requires a previously installed MySQL or PostgreSQL database.
+This guide will assume you are using [Fast Path](https://fusionauth.io/docs/v1/tech/installation-guide/fast-path), which requires a previously installed MySQL or PostgreSQL database.
 
 After you install and run the Fast Path script, you will see something like this:
 
