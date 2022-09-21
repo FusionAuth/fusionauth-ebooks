@@ -8,7 +8,7 @@ But you don’t have to panic. There are steps you can take to make sure your se
 
 ## Why Do You Need to Manage Launch Day Spikes?
 
-![TODO Progressive registration flow](https://imgur.com/ii5SzBj.png) 
+![Progressive registration flow](progressive-registration-steps.png) 
 
 Launch days can be chaotic for games, and even more so for online games. You need to be mindful of the following issues:
 
@@ -50,9 +50,7 @@ You can also explore [Cloudflare](https://www.cloudflare.com/) and [Fastly](http
 
 It’s always better to be equipped for unexpected scenarios. If your server code is deployed on a widely available public cloud like AWS, Google Cloud, or Azure, make sure you are using the available autoscaling functionality from your cloud provider and set some sane thresholds. This will ensure that no matter how much traffic you get on launch day, your servers can scale and cater to the increased demand.
 
-If you’re on AWS, you can use [EC2 Auto Scaling](https://aws.amazon.com/ec2/autoscaling/), which relies on machine learning to horizontally scale your EC2 instances. You can configure it based on multiple criteria to make sure the threshold value is optimized for your budget. The picture below (taken from [AWS](https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-configure-scaling-plan.html)) shows the different available threshold options:
-
-![TODO Choose EC2 Auto Scaling groups](https://imgur.com/RalWnNI.png)
+If you’re on AWS, you can use [EC2 Auto Scaling](https://aws.amazon.com/ec2/autoscaling/), which relies on machine learning to horizontally scale your EC2 instances. You can configure it based on multiple criteria to make sure the threshold value is optimized for your budget.
 
 Similar options are available for [Google Cloud Compute Engine](https://cloud.google.com/compute/docs/autoscaler) and [Microsoft Azure](https://azure.microsoft.com/en-us/features/autoscale/).
 
