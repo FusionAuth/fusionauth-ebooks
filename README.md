@@ -10,6 +10,8 @@ The current leanpub plan we are on only allows for 20 builds/month.
 
 Gather some previously written content. If not written by one author, add author attribution. See the kubernetes ebook for an example.
 
+Check it in to this repository in a subdirectory. Create a subdirectory in that directory for images.
+
 Remove useless links and CTAs.
 
 Update the text like "article/blog/post/guide" to chapter
@@ -45,3 +47,7 @@ After you publish the PDF, get the epub and publish to the kindle store.
 ## Advertising
 
 See https://docs.google.com/document/d/1V43s9JIV1fZy-Sve3MgULuZQhHxwzPwY0QeaUA1tVCg/edit
+
+## Using only for PDF generation
+
+If you are only using leanpub for PDF generation, then use the `forpdfgeneration` ebook and don't publish it. You can overwrite the chapters in that ebook which should never be 'live'.
