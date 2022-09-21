@@ -8,8 +8,6 @@ But you don’t have to panic. There are steps you can take to make sure your se
 
 ## Why Do You Need to Manage Launch Day Spikes?
 
-![Progressive registration flow](progressive-registration-steps.png) 
-
 Launch days can be chaotic for games, and even more so for online games. You need to be mindful of the following issues:
 
 * **Capacity planning is difficult:** It’s hard to do capacity planning and make sure that ample server resources are available to cater to spikes in network traffic. You never know how many people are going to show up on launch day. Preregistration and beta launches help, but even they don’t provide you with concrete information about how many people you should expect on final launch.
@@ -73,6 +71,8 @@ If you’re not a big fan of CAPTCHAs, you can also try adding a hidden field to
 ## Reduce Form Questions
 
 Try to reduce the number of form fields you ask the user to fill out on initial sign-up. Ask only questions that are crucial for user gameplay. Even then, try to split the form into multiple steps and get the user’s email first.
+
+![Progressive registration flow](progressive-registration-steps.png) 
 
 This tip is just as important for better user experience as it is for preserving server resources. The longer the registration form, the higher the chances of a user giving up before completing it. You can always ask for more details once the user has played the game and is more willing to share extra information. If an error occurs in the later steps of the registration flow, you’ll already have the user’s email and can reach out to invite them back to the game and finish the registration.
 
