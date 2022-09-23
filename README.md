@@ -42,7 +42,7 @@ Add blurb about book (can draw from intro).
 
 You can preview the book, and then publish it.
 
-After you publish the PDF, get the epub and publish to the kindle store.
+After you publish the PDF, get the epub and publish to the kindle store. https://kdp.amazon.com/en_US/ (creds in 1password)
 
 ## Advertising
 
