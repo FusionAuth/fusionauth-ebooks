@@ -16,9 +16,9 @@ Remove useless links and CTAs.
 
 Update the text like "article/blog/post/guide" to chapter
 
-Get Sean or other artist to create cover images. You need both 1600x2560 and 1800x2700 in dimension.
+Get Sean or other artist to create cover images. You need both 1600x2560 (kindle) and 1800x2700 (leanpub) in dimension.
 
-Gather images and diagrams, put in images director, only png or jpg. Convert SVGs
+Gather images and diagrams, put in images director, only png or jpg. Convert SVGs to pngs.
 
 Update all relative URLs (usually FusionAuth.io) to be absolute.
 
@@ -30,7 +30,7 @@ At least intro and conclusion, maybe another chapter
 
 Spellcheck and grammar check.
 
-Set up and add CTA for t-shirt at the end.
+Set up and add CTA for t-shirt at the end. You can see an example of that in the Modern Guide To OAuth.
 
 ## Publishing
 
