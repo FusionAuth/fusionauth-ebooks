@@ -10,4 +10,9 @@ At the end of the day, Kubernetes is an extremely powerful system with a lot of 
 
 While service meshes and API gateways offer some functionality, it's important to understand your options as you build your system on top of the orchestration framework.
 
+Also, congrats on reading through to the last page!
+
+We'd be happy to ship you a FusionAuth t-shirt like the one below. If you'd like one, please [fill out this form](https://go.fusionauth.io/tshirt?utm_medium=ebook&utm_source=leanpub&utm_campaign=k8s) and upload a picture of you enjoying this ebook and we'll ship one to you. 
+
+![FusionAuth t-shirt](tshirt.png)
 
