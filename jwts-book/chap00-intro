@@ -4,7 +4,7 @@ First things first. JSON Web Tokens, or JWTs, are pronounced 'jot', not J-W-T. Y
 
 JWTs encapsulate arbitrary JSON in a standardized way, and are useful to communicate between different parts of a software system.
 
-They are an IETF standard. The main RFC is 7519, but there are others as well. RFC 7515, RFC 7516, RFC 7517, RFC 7518 and RFC 7520 all concern this technology in one way or another.
+They are an IETF standard. The main RFC is 7519, but there are others as well. RFC 7515, RFC 7516, RFC 7517, RFC 7518 and RFC 7520 all concern this technology in one way or another. The group of standards is called JOSE (for Javascript Object Signing and Encryption).
 
 There are two kinds of JWTs: signed and encrypted. 
 
@@ -28,7 +28,7 @@ Not all bearer tokens are JWTs and not all JWTs are bearer tokens, but the use c
 
 In the same way, bearer tokens offer access to protected resources no matter who is presenting them. That means that you need to protect JWTs used in this way by using TLS for transport and by storing them safely in a location not accessible to other applications or rogue code.
 
-If your use case is such that the risks of bearer tokens are unacceptable, there are a few options that cryptographically bind a token to a client. JWTs used in this way are not bearer tokens. While I won't be covering these solutions, both [MTLS](https://datatracker.ietf.org/doc/html/rfc8705) and [DPoP](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-dpop-04) may meet your needs.
+If your use case is such that the risks of bearer tokens are unacceptable, there are a few options that cryptographically bind a token to a client. JWTs used in this way are not bearer tokens. While I won't be covering these solutions, both [MTLS](https://datatracker.ietf.org/doc/html/rfc8705) and [DPoP](https://datatracker.ietf.org/doc/html/rfc9449) may meet your needs.
 
 As mentioned above, JWTs are produced by many identity providers. They are also widely supported elsewhere, having many articles, open source libraries and implementations available. I have yet to run into a major language that didn't have at least one library for creating and parsing JWTs. And, because JWTs depend on cryptographic operations and are often used as temporary credentials, using a well known, well vetted open source library to interact with JWTs is a good idea.
 
