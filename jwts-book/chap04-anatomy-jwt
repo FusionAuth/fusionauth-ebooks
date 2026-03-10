@@ -34,8 +34,9 @@ You will see this JSON:
 
 The list of algorithms and implementation support level is below.
 
+{width: "100%", columns: [15, 65, 20]}
 | "alg" Param Value | Digital Signature or MAC Algorithm | Implementation Requirements |
-|:-------------------|:-----------------------------------|:----------------------------|
+|:------------------|:-----------------------------------|:----------------------------|
 | HS256             | HMAC using SHA-256                 | Required <br>               |
 | HS384             | HMAC using SHA-384                 | Optional <br>               |
 | HS512             | HMAC using SHA-512                 | Optional <br>               |
