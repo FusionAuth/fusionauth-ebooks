@@ -88,7 +88,7 @@ router.post('/fusionauth-webhook', function(req, res, next) {
 
 Here is how the JWTManager maintains the list of user ids whose JWTs should be revoked.
 
-This implementatin doesn't depend on unique ids in the JWT, but rather on the expiration time of the JWT and the time to live value configured for the application which created the JWT. You could also use the unique id of the JWT, often found in the `jti` claim, to implement this without the datetime math.
+This implementation doesn't depend on unique ids in the JWT, but rather on the expiration time of the JWT and the time to live value configured for the application which created the JWT. You could also use the unique id of the JWT, often found in the `jti` claim, to implement this without the datetime math.
 
 Our implementation also starts a thread to clean up after itself so we don't run out of memory.
 
