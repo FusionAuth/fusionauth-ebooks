@@ -24,13 +24,13 @@ Let's discuss each mode in a bit more detail, but first, a cheat sheet.
 
 Wow, that's a lot of different ways you can use OAuth. That's the power and the danger of OAuth, to be honest with you. It is so flexible that people new to it can be overwhelmed. So, here's a handy set of questions for you to ask yourself.
 
-* Are you looking to outsource your authentication and authorization to a safe, secure and standards-friendly auth system? You'll want Local login and registration in that case.
-* Trying to avoid storing any credentials because you don't want responsibility for passwords? Third-party login and registration is where it's at.
-* Are you selling to Enterprise customers? Folks who hear terms like SAML and SOC2 and are comforted, rather than disturbed? Scoot on over to Enterprise login and registration.
-* Are you building service to service communication with no user involved? If so, you are looking for Machine-to-machine authorization.
-* Are you trying to let a user log in from a separate device? That is, from a TV or similar device without a friendly typing interface? If this is so, check out Device login and registration.
-* Are you building a platform and want to allow other developers to ask for permissions to make calls to APIs or services on your platform? Put on your hoodie and review First-party login and registration and First-party service authorization.
-* Do you have a user store already integrated and only need to access a third party service on your users' behalf? Read up on Third-party service authorization.
+* Are you looking to outsource your authentication and authorization to a safe, secure and standards-friendly auth system? You'll want **Local login and registration** in that case.
+* Trying to avoid storing any credentials because you don't want responsibility for passwords? **Third-party login and registration** is where it's at.
+* Are you selling to Enterprise customers? Folks who hear terms like SAML and SOC2 and are comforted, rather than disturbed? Scoot on over to **Enterprise login and registration**.
+* Are you building service to service communication with no user involved? If so, you are looking for **Machine-to-machine authorization**.
+* Are you trying to let a user log in from a separate device? That is, from a TV or similar device without a friendly typing interface? If this is so, check out**Device login and registration**.
+* Are you building a platform and want to allow other developers to ask for permissions to make calls to APIs or services on your platform? Put on your hoodie and review **First-party login and registration** and **First-party service authorization**.
+* Do you have a user store already integrated and only need to access a third party service on your users' behalf? Read up on **Third-party service authorization**.
 
 With that overview done, let's examine each of these modes in more detail.
 
