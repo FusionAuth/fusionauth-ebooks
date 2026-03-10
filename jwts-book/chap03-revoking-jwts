@@ -161,7 +161,7 @@ We can now revoke a user's refresh token and FusionAuth will broadcast the event
 
 This solution works well even in large systems with numerous backends. It requires the use of refresh tokens, an API that allows refresh tokens to be revoked, and webhooks to broadcast that revocation. The only caveat is to be sure that your JWTManager code cleans up after itself to avoid running out memory.
 
-## Conclusion
+## Summary
 
 To answer the question that started this chapter, you can "sorta" revoke JWTs. 
 

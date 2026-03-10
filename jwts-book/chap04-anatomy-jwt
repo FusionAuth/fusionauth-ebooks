@@ -213,7 +213,7 @@ You can see that the total time increased for the longer JWT, but typically not 
 
 Be mindful of additional time taken to transport longer JWT; this can be tested and optimized in the same way you would with any other API or HTML content.
 
-## Conclusion
+## Summary
 
 Signed JWTs have a header, body, and signature. 
 

@@ -187,7 +187,7 @@ If any of these claims fail to match expected values, the consumer should provid
 
 If you are going to use claims for further information processing, make sure you sanitize those values. For instance, if you are going to query a database based on a claim, use a parameterized query.
 
-## In conclusion
+## Summary
 
 JWTs are a flexible technology, and can be used in many ways. We discussed a number of steps you can take, as either a creator, client or consumer of tokens, to ensure your JWTs are as secure as possible.
 
