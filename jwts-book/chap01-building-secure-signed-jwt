@@ -157,7 +157,7 @@ Clients should deliver the JWT to consumers over a secure connection, typically 
 
 The client must store the token securely as well. How to do that depends on what the client actually is. 
 
-For a browser, you should avoid storing the JWT in localstorage or a cookie accessible to JavaScript. You should instead keep it in a cookie with the following flags:
+For a browser, you should avoid storing the JWT in local storage or a cookie accessible to JavaScript. You should instead keep it in a cookie with the following flags:
 
 * `Secure` to ensure the cookie is only sent over TLS.
 * `HttpOnly` so that no rogue JavaScript can access the cookie.
