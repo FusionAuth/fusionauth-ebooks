@@ -101,7 +101,7 @@ As mentioned above, the payload is what your application cares about, so let's t
 
 Some claims are well known with meanings dictated by standards bodies such as the IETF. You can view [examples of such claims here](https://www.iana.org/assignments/jwt/jwt.xhtml). These include the `iss` and `aud` claims from the example token. Both of these have defined meanings when present in the payload of a JWT.
 
-There are other non-standard claims, such as `authenticationType`. These claims may represent business domain or custom data. For example, `authenticationType` is a proprietary claim used by FusionAuth to indicate the method of authentication, such as password, refresh token or via a passwordless link.
+There are other non-standard claims, such as `authenticationType`. These claims may represent business domain or custom data. For example, `authenticationType` is a proprietary claim used by <nobr>FusionAuth</nobr> to indicate the method of authentication, such as password, refresh token or via a passwordless link.
 
 You may add any claims you want to a JWT, including data useful to downstream consumers of the JWT. As you can see from the `roles` claim, claims don't have to be simple JSON primitives. They can be any data structure which can be represented in JSON.
 
