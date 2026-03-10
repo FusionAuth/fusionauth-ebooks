@@ -1,3 +1,5 @@
+{latex}
+\hyphenation{FusionAuth}
 # What are JWTs
 
 First things first. JSON Web Tokens, or JWTs, are pronounced 'jot', not J-W-T. You're welcome!
