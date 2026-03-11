@@ -34,22 +34,22 @@ You will see this JSON:
 
 The list of algorithms and implementation support level is below.
 
-{width: "100%", columns: [15, 65, 20]}
-| "alg" Param Value | Digital Signature or MAC Algorithm | Implementation Requirements |
+{width: "100%", columns: [10, 75, 15]}
+| "alg" Param Value | Digital Signature or MAC Algorithm | Implementation Reqs |
 |:------------------|:-----------------------------------|:----------------------------|
-| HS256             | HMAC using SHA-256                 | Required <br>               |
-| HS384             | HMAC using SHA-384                 | Optional <br>               |
-| HS512             | HMAC using SHA-512                 | Optional <br>               |
-| RS256             | RSASSA-PKCS1-v1_5 using SHA-256    | Recommended <br>            |
-| RS384             | RSASSA-PKCS1-v1_5 using SHA-384    | Optional <br>               |
-| RS512             | RSASSA-PKCS1-v1_5 using SHA-512    | Optional <br>               |
-| ES256             | ECDSA using P-256 and SHA-256      | Recommended <br>           |
-| ES384             | ECDSA using P-384 and SHA-384      | Optional <br>               |
-| ES512             | ECDSA using P-521 and SHA-512      | Optional <br>               |
-| PS256             | RSASSA-PSS using SHA-256 and MGF1 with SHA-256 | Optional <br>  |
-| PS384             | RSASSA-PSS using SHA-384 and MGF1 with SHA-384 | Optional <br>  |
-| PS512             | RSASSA-PSS using SHA-512 and MGF1 with SHA-512 | Optional <br>  |
-| none              | No digital signature or MAC performed | Optional <br>           |
+| HS256             | HMAC using SHA-256                 | Required                |
+| HS384             | HMAC using SHA-384                 | Optional                |
+| HS512             | HMAC using SHA-512                 | Optional                |
+| RS256             | RSASSA-PKCS1-v1_5 using SHA-256    | Recommended             |
+| RS384             | RSASSA-PKCS1-v1_5 using SHA-384    | Optional                |
+| RS512             | RSASSA-PKCS1-v1_5 using SHA-512    | Optional                |
+| ES256             | ECDSA using P-256 and SHA-256      | Recommended            |
+| ES384             | ECDSA using P-384 and SHA-384      | Optional                |
+| ES512             | ECDSA using P-521 and SHA-512      | Optional                |
+| PS256             | RSASSA-PSS using SHA-256 and MGF1 with SHA-256 | Optional   |
+| PS384             | RSASSA-PSS using SHA-384 and MGF1 with SHA-384 | Optional   |
+| PS512             | RSASSA-PSS using SHA-512 and MGF1 with SHA-512 | Optional   |
+| none              | No digital signature or MAC performed | Optional            |
 
 This table is drawn from RFC 7518. As only HS256 is required to be compliant with the spec, consult the software or library used to create JWTs for details on supported algorithms.
 
